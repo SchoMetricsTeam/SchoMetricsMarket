@@ -10,6 +10,8 @@ const protectedSellerRoutes = [
   "/vendedor/perfil",
   "/vendedor/publicar-materiales",
   "/vendedor/materiales-publicados",
+  "/vendedor/mis-ventas",
+  "/vendedor/tratamiento-del-material",
 ];
 
 // Rutas específicas para el rol BUYER

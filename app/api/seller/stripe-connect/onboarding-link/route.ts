@@ -24,7 +24,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+    const baseUrl =
+      process.env.NEXT_PUBLIC_APP_URL || "https://schometrics.com";
     const refreshUrl = `${baseUrl}/vendedor/publicar-materiales?refresh=true`;
     const returnUrl = `${baseUrl}/vendedor/publicar-materiales?success=true`;
 
