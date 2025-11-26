@@ -1,0 +1,255 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider  = "postgresql"
+}
+
+// Model for users
+model User {
+  id         String   @id @default(cuid())
+  identifier String   @unique
+  name       String
+  password   String
+  role       Role     @default(USER)
+  userType   UserType @default(SELLER)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  // ====== Relations ======= //
+  profile            Profile?
+  recyclableMaterials RecyclableMaterial[]
+  purchasesMade      MaterialPurchase[] @relation("BuyerPurchases")
+  materialsSold      MaterialPurchase[] @relation("SellerSales")
+  stripeAccount      StripeConnectAccount?
+  
+  @@map("users")
+}
+
+// enum for UserTypes
+enum UserType {
+  SELLER
+  BUYER
+  ADMIN
+}
+
+// enum for Roles
+enum Role {
+  USER
+  ADMIN
+}
+
+// Model Profile
+model Profile {
+  id        String  @id @default(cuid())
+  email     String  @unique
+  city      String?
+  state     String?
+  postalCode String?
+  address   String?
+  phone     String?
+  rfc       String?  @unique // For buyers
+  cct       String?  @unique// For SELLER (Escuela) Clave del Centro de Trabajo (CCT)
+  avatarUrl String?
+
+  // ====== Relations ======= //
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("profiles")
+}
+
+// Model for Recyclable Materials
+model RecyclableMaterial {
+  id          String       @id @default(cuid())
+  folio       String       @unique // Folio de validez de compra
+  title       String
+  materialType MaterialType
+  quantity    Float        // in kg
+  city        String
+  state       String
+  postalCode  String
+  address     String
+  location    String // Ubicación - link de Google Maps
+  schedule    String       // horario de atención
+  images  RecyclableMaterialImage[] // Relación uno-a-muchos con las imágenes
+  status      MaterialStatus @default(AVAILABLE)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  // ====== Relations ======= //
+  userId    String
+  user      User       @relation(fields: [userId], references: [id])
+  purchases MaterialPurchase[]
+  
+  @@map("recyclable_materials")
+}
+
+// Model for Recyclable Material Images
+model RecyclableMaterialImage {
+  id               String         @id @default(cuid())
+  s3Key            String // La clave del archivo en S3
+  order            Int // Para mantener el orden de las imágenes
+  recyclableMaterialId String @map("RecyclableMaterialId")
+  recyclableMaterial   RecyclableMaterial @relation(fields: [recyclableMaterialId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@index([recyclableMaterialId])
+	@@map("RecyclableMaterialImage")
+}
+
+model MaterialPurchase {
+  id                    String   @id @default(cuid())
+  purchaseFolio                 String // Folio de validez de compra (igual al folio del material)
+  
+  // Buyer information
+  buyerId             String
+  buyer               User     @relation("BuyerPurchases", fields: [buyerId], references: [id], onDelete: Cascade)
+  buyerName           String
+  buyerEmail          String
+  buyerRFC            String
+  buyerPhone          String
+  buyerAddress        String
+  
+  // information (seller)
+  sellerId              String
+  seller                User     @relation("SellerSales", fields: [sellerId], references: [id], onDelete: Cascade)
+  
+  // Material information
+  materialId            String
+  material              RecyclableMaterial @relation(fields: [materialId], references: [id])
+  materialTitle         String
+  materialType          MaterialType
+  quantity              Float    // cantidad comprada en kg
+  pricePerKg            Float    // precio por kg al momento de la compra
+  totalAmount           Float    // cantidad total pagada
+  
+ // Stripe Connect fee fields
+  platformFeeAmount     Float?   // 20% fee for SchoMetrics platform
+  sellerAmount          Float?   // 80% amount for the seller
+
+  // Transportation informationy
+  transporterName         String
+  transporterPhone        String
+  transporterCredential   String
+  
+  // Collection information
+  collectionDate        DateTime
+  collectionTime        String
+  collectionAddress     String
+  
+  // Payment information
+  paymentStatus         PaymentStatus @default(PENDING)
+  paymentMethod         String?
+  stripePaymentIntentId String?
+  stripeTransferId      String?  // Added to track transfer to seller
+  
+  // Timestamps
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+  
+  @@map("material_purchases")
+}
+
+model StripeConnectAccount {
+  id                    String   @id @default(cuid())
+  userId                String   @unique
+  user                  User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  stripeAccountId       String   @unique // Stripe Connect Account ID
+  accountStatus         AccountStatus @default(PENDING)
+  chargesEnabled        Boolean  @default(false)
+  payoutsEnabled        Boolean  @default(false)
+  detailsSubmitted      Boolean  @default(false)
+  
+  // Onboarding
+  onboardingComplete    Boolean  @default(false)
+  onboardingLink        String?
+  onboardingExpiresAt   DateTime?
+  
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+  
+  @@map("stripe_connect_accounts")
+}
+
+enum AccountStatus {
+  PENDING
+  ACTIVE
+  RESTRICTED
+  REJECTED
+}
+
+enum PaymentStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  REFUNDED
+}
+
+// enum for Material Types
+enum MaterialType {
+  PLASTICO
+  PAPEL
+  VIDRIO
+  ORGANICO
+  ALUMINIO
+}
+
+// enum for Material Status
+enum MaterialStatus {
+  AVAILABLE
+  PENDING
+  PURCHASED
+}
+
+// Model section for REPORTS
+// Enumeraciones para los selectores, aseguran la integridad de los datos.
+enum ReportTarget {
+  Vendedor
+  Comprador
+}
+
+enum ReportUserType {
+  Comprador
+  Vendedor
+}
+
+enum ReportStatus {
+  PENDIENTE
+  REVISION
+  COMPLETADO  
+}
+
+model Report {
+  id                String       @id @default(cuid())
+  title             String
+  targetType        ReportTarget        // Dirigido a: Escuela, Empresa, Negocio
+  reportUserType    ReportUserType     // Soy un: Comprador, Vendedor
+  reportStatus      ReportStatus @default(PENDIENTE)
+  sellerName   String       // Nombre del vendedor
+  rfc               String      // RFC del comprador reportado
+  cct               String?      // CCT, opcional de la Institución(Escuela) reportada
+  ownerName         String       // Nombre del creador del reporte
+  ownerEmail        String       // Correo del creador del reporte
+  ownerIdentifier   String       // Identificador de Sesión 
+  ownerUserType     String
+  ownerRFC          String       
+  ownerCCT          String? 
+  ownerCity         String?
+  ownerState        String?
+  ownerPostalCode   String?
+  ownerAddress      String?
+  ownerPhone        String?
+  content           String       @db.Text
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime     @updatedAt
+
+  @@map("reports")
+}
