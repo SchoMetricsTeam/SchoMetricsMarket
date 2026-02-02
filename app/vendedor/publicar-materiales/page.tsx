@@ -353,9 +353,9 @@ interface AccountStatus {
 // 2. Componente de Carga reutilizable (Tu diseño original)
 function PageLoader() {
   return (
-    <div className="min-h-screen bg-zinc-950">
+    <div className="min-h-screen bg-seller">
       <div className="container mx-auto px-4 py-8 flex items-center justify-center min-h-[60vh]">
-        <Loader2 className="h-8 w-8 animate-spin text-lime-500" />
+        <Loader2 className="h-8 w-8 animate-spin text-sellerBaseColor" />
       </div>
     </div>
   )
@@ -443,7 +443,7 @@ function NewRecyclableMaterialContent() {
   }
 
   return (
-    <div className="min-h-screen bg-[#06001b]">
+    <div className="min-h-screen bg-seller">
       <SellerNavigation />
       <div className="flex flex-col justify-center items-center mt-5 p-4">
         <div className="mb-10 mt-5 p-3 w-full flex flex-col justify-center items-center text-center">
@@ -453,7 +453,7 @@ function NewRecyclableMaterialContent() {
           <h1 className="text-4xl font-bold text-sellerBaseColor">
             Publicar Materiales Reciclables
           </h1>
-          <p className="text-zinc-300 text-lg leading-relaxed">
+          <p className="text-zinc-600 text-lg leading-relaxed">
             Crea nuevas publicaciones de venta para materiales reciclables
           </p>
         </div>
@@ -478,7 +478,7 @@ function NewRecyclableMaterialContent() {
             {!accountStatus?.hasAccount ? (
               <div className="space-y-4">
                 <Alert className="bg-[#fff8f8] border-red-600">
-                  <AlertCircle className="h-4 w-4 text-rose-700" />
+                  <AlertCircle className="h-4 w-4" />
                   <AlertDescription className="text-rose-700">
                     Aún no has creado una cuenta de vendedor. Necesitas configurar tu cuenta de Stripe Connect para recibir pagos
                     cuando las empresas compren tus materiales.
@@ -486,27 +486,27 @@ function NewRecyclableMaterialContent() {
                 </Alert>
 
                 <div className="bg-zinc-100 p-4 rounded-lg">
-                  <h3 className="font-semibold text-orange-500 mb-2">¿Cómo funciona?</h3>
+                  <h3 className="font-semibold text-indigo-500 mb-2">¿Cómo funciona?</h3>
                   <ul className="space-y-2 text-sm text-zinc-400">
                     <li className="flex items-start gap-2">
-                      <CheckCircle className="h-4 w-4 text-orange-500 mt-0.5 shrink-0" />
+                      <CheckCircle className="h-4 w-4 text-indigo-500 mt-0.5 shrink-0" />
                       <span>Los Compradores pagan el 100% del precio del material.</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle className="h-4 w-4 text-orange-500 mt-0.5 shrink-0" />
+                      <CheckCircle className="h-4 w-4 text-indigo-500 mt-0.5 shrink-0" />
                       <span>
-                        Recibes el <strong className="text-orange-500">80%</strong> del monto total.
+                        Recibes el <strong className="text-indigo-500">80%</strong> del monto total.
                       </span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle className="h-4 w-4 text-orange-500 mt-0.5 shrink-0" />
+                      <CheckCircle className="h-4 w-4 text-indigo-500 mt-0.5 shrink-0" />
                       <span>
                         SchoMetrics retiene el <strong className="text-sellerBaseColor">20%</strong> como comisión de
                         plataforma.
                       </span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle className="h-4 w-4 text-orange-500 mt-0.5 shrink-0" />
+                      <CheckCircle className="h-4 w-4 text-indigo-500 mt-0.5 shrink-0" />
                       <span>Los pagos se depositan directamente en tu cuenta bancaria.</span>
                     </li>
                   </ul>
@@ -515,7 +515,7 @@ function NewRecyclableMaterialContent() {
                 <Button
                   onClick={handleCreateAccount}
                   disabled={creatingAccount}
-                  className="w-full bg-orange-700 hover:bg-orange-600 cursor-pointer"
+                  className="w-full bg-indigo-700 hover:bg-indigo-600 cursor-pointer"
                 >
                   {creatingAccount ? (
                     <>

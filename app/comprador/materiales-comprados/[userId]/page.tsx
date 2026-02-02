@@ -18,6 +18,7 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { Separator } from '@/components/ui/separator';
 import { BuyerNavigation } from "@/app/components/buyer/BuyerNavigation"
 import Link from "next/link"
+import { motion } from "motion/react"
 
 
 export default function PurchasedMaterialsPage() {
@@ -126,20 +127,20 @@ export default function PurchasedMaterialsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-950">
+    <div className="min-h-screen bg-buyer">
       <BuyerNavigation />
       <div className="mx-auto px-4 py-8 sm:px-6 lg:px-8">
         <div className="mb-6 flex flex-col items-start justify-center gap-3">
           <div className="mb-10">
             <div className="flex items-center gap-3 mb-3">
               <div className="p-2 bg-linear-to-br from-emerald-100/20 to-teal-500/20 rounded-lg border border-emerald-300/30">
-                <ShoppingCart className="h-6 w-6 text-emerald-400" />
+                <ShoppingCart className="h-6 w-6 text-teal-500" />
               </div>
               <h1 className="text-4xl font-bold text-teal-600">
                 Mis Compras
               </h1>
             </div>
-            <p className="text-zinc-300 text-lg leading-relaxed">
+            <p className="text-zinc-600 text-lg leading-relaxed">
               Aquí encontrarás la tabla de tus compras realizadas, puedes descargar el Comprobante de manera individual por cada compra o descargar el Informe de Compras Totales
             </p>
           </div>
@@ -152,7 +153,12 @@ export default function PurchasedMaterialsPage() {
         </div>
 
         {purchases.length === 0 ? (
-          <Card className="relative border border-teal-100 shadow-md shadow-teal-100">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mb-8 rounded-2xl border border-teal-200 bg-[#f7fffc] p-6 shadow-xl shadow-teal-100"
+          >
             <CardContent className="flex flex-col items-center justify-center py-12">
               <Box className="h-12 w-12 text-teal-600 mb-4" />
               <h3 className="text-lg font-semibold mb-2 text-teal-700">No tienes compras realizadas</h3>
@@ -163,7 +169,8 @@ export default function PurchasedMaterialsPage() {
                 <a href="/comprador/materiales-disponibles">Ver Materiales Disponibles</a>
               </Button>
             </CardContent>
-          </Card>
+          </motion.div>
+
         ) : (
           <Card className="bg-[#001817] border-none text-white">
             <CardHeader>

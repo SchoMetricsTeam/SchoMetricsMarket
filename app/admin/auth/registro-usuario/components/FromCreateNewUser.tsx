@@ -170,7 +170,7 @@ const FromCreateNewUser = () => {
                     <div className="flex justify-between items-start">
                         {/* Ícono de Registro/Admin */}
                         <UserPlus className={`h-10 w-10 ${ACCENT_COLOR} drop-shadow-lg`} />
-                        <Link href="/admin/perfil">
+                        <Link href="/admin/materiales-comprados">
                             <Button variant="link" className={`text-sm ${ACCENT_COLOR} hover:text-emerald-300 cursor-pointer`}>
                                 ← Volver a Inicio
                             </Button>
@@ -197,7 +197,7 @@ const FromCreateNewUser = () => {
 
                             {/* Nombre */}
                             <div className="space-y-2">
-                                <Label htmlFor="name" className="text-gray-200 font-semibold flex items-center gap-2">
+                                <Label htmlFor="name" className="text-gray-200 hover:text-emerald-200 transition-all font-semibold flex items-center gap-2">
                                     <User className="h-4 w-4" /> Nombre completo
                                 </Label>
                                 <Input
@@ -214,7 +214,7 @@ const FromCreateNewUser = () => {
 
                             {/* Identificador */}
                             <div className="space-y-2">
-                                <Label htmlFor="identifier" className="text-gray-200 font-semibold flex items-center gap-2">
+                                <Label htmlFor="identifier" className="text-gray-200 hover:text-emerald-200 transition-all font-semibold flex items-center gap-2">
                                     <Hash className="h-4 w-4" /> Identificador de Cuenta
                                 </Label>
                                 <Input
@@ -234,7 +234,7 @@ const FromCreateNewUser = () => {
 
                             {/* Contraseña */}
                             <div className="space-y-2">
-                                <Label htmlFor="password" className="text-gray-200 font-semibold flex items-center gap-2">
+                                <Label htmlFor="password" className="text-gray-200 hover:text-emerald-200 transition-all font-semibold flex items-center gap-2">
                                     <Lock className="h-4 w-4" /> Contraseña
                                 </Label>
                                 <div className="relative">
@@ -252,7 +252,7 @@ const FromCreateNewUser = () => {
                                         type="button"
                                         variant="ghost"
                                         size="icon"
-                                        className="absolute right-0 top-0 h-full w-10 text-gray-400 hover:text-emerald-400 transition duration-200"
+                                        className="absolute right-0 top-0 w-10 text-gray-400 bg-transparent hover:bg-transparent cursor-pointer hover:text-emerald-400 transition duration-200"
                                         onClick={togglePasswordVisibility}
                                     >
                                         {showPassword ? (
@@ -270,7 +270,7 @@ const FromCreateNewUser = () => {
 
                             {/* Confirmar Contraseña */}
                             <div className="space-y-2">
-                                <Label htmlFor="confirmPassword" className="text-gray-200 font-semibold flex items-center gap-2">
+                                <Label htmlFor="confirmPassword" className="text-gray-200 hover:text-emerald-200 transition-all font-semibold flex items-center gap-2">
                                     <Lock className="h-4 w-4" /> Confirmar Contraseña
                                 </Label>
                                 <div className="relative">
@@ -288,7 +288,7 @@ const FromCreateNewUser = () => {
                                         type="button"
                                         variant="ghost"
                                         size="icon"
-                                        className="absolute right-0 top-0 h-full w-10 text-gray-400 hover:text-emerald-400 transition duration-200"
+                                        className="absolute right-0 top-0 w-10 text-gray-400 bg-transparent hover:bg-transparent cursor-pointer hover:text-emerald-400 transition duration-200"
                                         onClick={toggleConfirmPasswordVisibility}
                                     >
                                         {showConfirmPassword ? (
@@ -306,7 +306,7 @@ const FromCreateNewUser = () => {
 
                             {/* Email */}
                             <div className="space-y-2">
-                                <Label htmlFor="email" className="text-gray-200 font-semibold flex items-center gap-2">
+                                <Label htmlFor="email" className="text-gray-200 hover:text-emerald-200 transition-all font-semibold flex items-center gap-2">
                                     <Mail className="h-4 w-4" /> Correo electrónico
                                 </Label>
                                 <Input
@@ -331,7 +331,7 @@ const FromCreateNewUser = () => {
 
                             {/* Ciudad */}
                             <div className="space-y-2">
-                                <Label htmlFor="city" className="text-gray-200 font-semibold flex items-center gap-2">
+                                <Label htmlFor="city" className="text-gray-200 hover:text-emerald-200 transition-all font-semibold flex items-center gap-2">
                                     <Building2 className="h-4 w-4" /> Ciudad
                                 </Label>
                                 <Input
@@ -349,7 +349,7 @@ const FromCreateNewUser = () => {
 
                             {/* Estado (Select) */}
                             <div className="space-y-2">
-                                <Label htmlFor="state" className="text-gray-200 font-semibold flex items-center gap-2">
+                                <Label htmlFor="state" className="text-gray-200 hover:text-emerald-200 transition-all font-semibold flex items-center gap-2">
                                     <MapPin className="h-4 w-4" /> Estado
                                 </Label>
                                 {/* El Select debe tener estilos para el tema oscuro si es un componente de shadcn/ui */}
@@ -379,7 +379,7 @@ const FromCreateNewUser = () => {
 
                             {/* Código Postal */}
                             <div className="space-y-2">
-                                <Label htmlFor="postalCode" className="text-gray-200 font-semibold flex items-center gap-2">
+                                <Label htmlFor="postalCode" className="text-gray-200 hover:text-emerald-200 transition-all font-semibold flex items-center gap-2">
                                     <Hash className="h-4 w-4" /> Código Postal
                                 </Label>
                                 <Input
@@ -399,7 +399,7 @@ const FromCreateNewUser = () => {
 
                             {/* Dirección */}
                             <div className="space-y-2">
-                                <Label htmlFor="address" className="text-gray-200 font-semibold flex items-center gap-2">
+                                <Label htmlFor="address" className="text-gray-200 hover:text-emerald-200 transition-all font-semibold flex items-center gap-2">
                                     <Home className="h-4 w-4" /> Dirección Completa
                                 </Label>
                                 <Input
@@ -417,7 +417,7 @@ const FromCreateNewUser = () => {
 
                             {/* RFC */}
                             <div className="space-y-2">
-                                <Label htmlFor="rfc" className="text-gray-200 font-semibold flex items-center gap-2">
+                                <Label htmlFor="rfc" className="text-gray-200 hover:text-emerald-200 transition-all font-semibold flex items-center gap-2">
                                     <Hash className="h-4 w-4" /> RFC
                                 </Label>
                                 <Input
@@ -435,7 +435,7 @@ const FromCreateNewUser = () => {
 
                             {/* CCT */}
                             <div className="space-y-2">
-                                <Label htmlFor="cct" className="text-gray-200 font-semibold flex items-center gap-2">
+                                <Label htmlFor="cct" className="text-gray-200 hover:text-emerald-200 transition-all font-semibold flex items-center gap-2">
                                     <Building2 className="h-4 w-4" /> CCT (Centro de Trabajo)
                                 </Label>
                                 <Input
@@ -453,7 +453,7 @@ const FromCreateNewUser = () => {
 
                             {/* Tipo de usuario (Radio Group) */}
                             <div className="space-y-2">
-                                <Label className="text-gray-200 font-semibold flex items-center gap-2 pb-2">
+                                <Label className="text-gray-200 hover:text-emerald-200 transition-all font-semibold flex items-center gap-2 pb-2">
                                     <TrendingUp className="h-4 w-4" /> Tipo de Cuenta
                                 </Label>
                                 {/* Estilos aplicados al RadioGroup y sus Items */}

@@ -297,8 +297,8 @@ export type RecyclableMaterialWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"RecyclableMaterial"> | Date | string
   userId?: Prisma.StringFilter<"RecyclableMaterial"> | string
   images?: Prisma.RecyclableMaterialImageListRelationFilter
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   purchases?: Prisma.MaterialPurchaseListRelationFilter
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
 export type RecyclableMaterialOrderByWithRelationInput = {
@@ -318,8 +318,8 @@ export type RecyclableMaterialOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   images?: Prisma.RecyclableMaterialImageOrderByRelationAggregateInput
-  user?: Prisma.UserOrderByWithRelationInput
   purchases?: Prisma.MaterialPurchaseOrderByRelationAggregateInput
+  user?: Prisma.UserOrderByWithRelationInput
 }
 
 export type RecyclableMaterialWhereUniqueInput = Prisma.AtLeast<{
@@ -342,8 +342,8 @@ export type RecyclableMaterialWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"RecyclableMaterial"> | Date | string
   userId?: Prisma.StringFilter<"RecyclableMaterial"> | string
   images?: Prisma.RecyclableMaterialImageListRelationFilter
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   purchases?: Prisma.MaterialPurchaseListRelationFilter
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id" | "folio">
 
 export type RecyclableMaterialOrderByWithAggregationInput = {
@@ -406,8 +406,8 @@ export type RecyclableMaterialCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   images?: Prisma.RecyclableMaterialImageCreateNestedManyWithoutRecyclableMaterialInput
-  user: Prisma.UserCreateNestedOneWithoutRecyclableMaterialsInput
   purchases?: Prisma.MaterialPurchaseCreateNestedManyWithoutMaterialInput
+  user: Prisma.UserCreateNestedOneWithoutRecyclableMaterialsInput
 }
 
 export type RecyclableMaterialUncheckedCreateInput = {
@@ -446,8 +446,8 @@ export type RecyclableMaterialUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   images?: Prisma.RecyclableMaterialImageUpdateManyWithoutRecyclableMaterialNestedInput
-  user?: Prisma.UserUpdateOneRequiredWithoutRecyclableMaterialsNestedInput
   purchases?: Prisma.MaterialPurchaseUpdateManyWithoutMaterialNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutRecyclableMaterialsNestedInput
 }
 
 export type RecyclableMaterialUncheckedUpdateInput = {
@@ -786,8 +786,8 @@ export type RecyclableMaterialCreateWithoutImagesInput = {
   status?: $Enums.MaterialStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutRecyclableMaterialsInput
   purchases?: Prisma.MaterialPurchaseCreateNestedManyWithoutMaterialInput
+  user: Prisma.UserCreateNestedOneWithoutRecyclableMaterialsInput
 }
 
 export type RecyclableMaterialUncheckedCreateWithoutImagesInput = {
@@ -840,8 +840,8 @@ export type RecyclableMaterialUpdateWithoutImagesInput = {
   status?: Prisma.EnumMaterialStatusFieldUpdateOperationsInput | $Enums.MaterialStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutRecyclableMaterialsNestedInput
   purchases?: Prisma.MaterialPurchaseUpdateManyWithoutMaterialNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutRecyclableMaterialsNestedInput
 }
 
 export type RecyclableMaterialUncheckedUpdateWithoutImagesInput = {
@@ -1084,8 +1084,8 @@ export type RecyclableMaterialSelect<ExtArgs extends runtime.Types.Extensions.In
   updatedAt?: boolean
   userId?: boolean
   images?: boolean | Prisma.RecyclableMaterial$imagesArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   purchases?: boolean | Prisma.RecyclableMaterial$purchasesArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.RecyclableMaterialCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["recyclableMaterial"]>
 
@@ -1148,8 +1148,8 @@ export type RecyclableMaterialSelectScalar = {
 export type RecyclableMaterialOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "folio" | "title" | "materialType" | "quantity" | "city" | "state" | "postalCode" | "address" | "location" | "schedule" | "status" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["recyclableMaterial"]>
 export type RecyclableMaterialInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   images?: boolean | Prisma.RecyclableMaterial$imagesArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   purchases?: boolean | Prisma.RecyclableMaterial$purchasesArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.RecyclableMaterialCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type RecyclableMaterialIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1163,8 +1163,8 @@ export type $RecyclableMaterialPayload<ExtArgs extends runtime.Types.Extensions.
   name: "RecyclableMaterial"
   objects: {
     images: Prisma.$RecyclableMaterialImagePayload<ExtArgs>[]
-    user: Prisma.$UserPayload<ExtArgs>
     purchases: Prisma.$MaterialPurchasePayload<ExtArgs>[]
+    user: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1577,8 +1577,8 @@ readonly fields: RecyclableMaterialFieldRefs;
 export interface Prisma__RecyclableMaterialClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   images<T extends Prisma.RecyclableMaterial$imagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RecyclableMaterial$imagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RecyclableMaterialImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   purchases<T extends Prisma.RecyclableMaterial$purchasesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RecyclableMaterial$purchasesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MaterialPurchasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

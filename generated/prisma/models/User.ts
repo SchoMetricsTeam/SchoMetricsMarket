@@ -206,10 +206,10 @@ export type UserWhereInput = {
   userType?: Prisma.EnumUserTypeFilter<"User"> | $Enums.UserType
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  profile?: Prisma.XOR<Prisma.ProfileNullableScalarRelationFilter, Prisma.ProfileWhereInput> | null
-  recyclableMaterials?: Prisma.RecyclableMaterialListRelationFilter
   purchasesMade?: Prisma.MaterialPurchaseListRelationFilter
   materialsSold?: Prisma.MaterialPurchaseListRelationFilter
+  profile?: Prisma.XOR<Prisma.ProfileNullableScalarRelationFilter, Prisma.ProfileWhereInput> | null
+  recyclableMaterials?: Prisma.RecyclableMaterialListRelationFilter
   stripeAccount?: Prisma.XOR<Prisma.StripeConnectAccountNullableScalarRelationFilter, Prisma.StripeConnectAccountWhereInput> | null
 }
 
@@ -222,10 +222,10 @@ export type UserOrderByWithRelationInput = {
   userType?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  profile?: Prisma.ProfileOrderByWithRelationInput
-  recyclableMaterials?: Prisma.RecyclableMaterialOrderByRelationAggregateInput
   purchasesMade?: Prisma.MaterialPurchaseOrderByRelationAggregateInput
   materialsSold?: Prisma.MaterialPurchaseOrderByRelationAggregateInput
+  profile?: Prisma.ProfileOrderByWithRelationInput
+  recyclableMaterials?: Prisma.RecyclableMaterialOrderByRelationAggregateInput
   stripeAccount?: Prisma.StripeConnectAccountOrderByWithRelationInput
 }
 
@@ -241,10 +241,10 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   userType?: Prisma.EnumUserTypeFilter<"User"> | $Enums.UserType
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  profile?: Prisma.XOR<Prisma.ProfileNullableScalarRelationFilter, Prisma.ProfileWhereInput> | null
-  recyclableMaterials?: Prisma.RecyclableMaterialListRelationFilter
   purchasesMade?: Prisma.MaterialPurchaseListRelationFilter
   materialsSold?: Prisma.MaterialPurchaseListRelationFilter
+  profile?: Prisma.XOR<Prisma.ProfileNullableScalarRelationFilter, Prisma.ProfileWhereInput> | null
+  recyclableMaterials?: Prisma.RecyclableMaterialListRelationFilter
   stripeAccount?: Prisma.XOR<Prisma.StripeConnectAccountNullableScalarRelationFilter, Prisma.StripeConnectAccountWhereInput> | null
 }, "id" | "identifier">
 
@@ -285,10 +285,10 @@ export type UserCreateInput = {
   userType?: $Enums.UserType
   createdAt?: Date | string
   updatedAt?: Date | string
-  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
-  recyclableMaterials?: Prisma.RecyclableMaterialCreateNestedManyWithoutUserInput
   purchasesMade?: Prisma.MaterialPurchaseCreateNestedManyWithoutBuyerInput
   materialsSold?: Prisma.MaterialPurchaseCreateNestedManyWithoutSellerInput
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
+  recyclableMaterials?: Prisma.RecyclableMaterialCreateNestedManyWithoutUserInput
   stripeAccount?: Prisma.StripeConnectAccountCreateNestedOneWithoutUserInput
 }
 
@@ -301,10 +301,10 @@ export type UserUncheckedCreateInput = {
   userType?: $Enums.UserType
   createdAt?: Date | string
   updatedAt?: Date | string
-  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
-  recyclableMaterials?: Prisma.RecyclableMaterialUncheckedCreateNestedManyWithoutUserInput
   purchasesMade?: Prisma.MaterialPurchaseUncheckedCreateNestedManyWithoutBuyerInput
   materialsSold?: Prisma.MaterialPurchaseUncheckedCreateNestedManyWithoutSellerInput
+  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+  recyclableMaterials?: Prisma.RecyclableMaterialUncheckedCreateNestedManyWithoutUserInput
   stripeAccount?: Prisma.StripeConnectAccountUncheckedCreateNestedOneWithoutUserInput
 }
 
@@ -317,10 +317,10 @@ export type UserUpdateInput = {
   userType?: Prisma.EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
-  recyclableMaterials?: Prisma.RecyclableMaterialUpdateManyWithoutUserNestedInput
   purchasesMade?: Prisma.MaterialPurchaseUpdateManyWithoutBuyerNestedInput
   materialsSold?: Prisma.MaterialPurchaseUpdateManyWithoutSellerNestedInput
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
+  recyclableMaterials?: Prisma.RecyclableMaterialUpdateManyWithoutUserNestedInput
   stripeAccount?: Prisma.StripeConnectAccountUpdateOneWithoutUserNestedInput
 }
 
@@ -333,10 +333,10 @@ export type UserUncheckedUpdateInput = {
   userType?: Prisma.EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
-  recyclableMaterials?: Prisma.RecyclableMaterialUncheckedUpdateManyWithoutUserNestedInput
   purchasesMade?: Prisma.MaterialPurchaseUncheckedUpdateManyWithoutBuyerNestedInput
   materialsSold?: Prisma.MaterialPurchaseUncheckedUpdateManyWithoutSellerNestedInput
+  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+  recyclableMaterials?: Prisma.RecyclableMaterialUncheckedUpdateManyWithoutUserNestedInput
   stripeAccount?: Prisma.StripeConnectAccountUncheckedUpdateOneWithoutUserNestedInput
 }
 
@@ -506,9 +506,9 @@ export type UserCreateWithoutProfileInput = {
   userType?: $Enums.UserType
   createdAt?: Date | string
   updatedAt?: Date | string
-  recyclableMaterials?: Prisma.RecyclableMaterialCreateNestedManyWithoutUserInput
   purchasesMade?: Prisma.MaterialPurchaseCreateNestedManyWithoutBuyerInput
   materialsSold?: Prisma.MaterialPurchaseCreateNestedManyWithoutSellerInput
+  recyclableMaterials?: Prisma.RecyclableMaterialCreateNestedManyWithoutUserInput
   stripeAccount?: Prisma.StripeConnectAccountCreateNestedOneWithoutUserInput
 }
 
@@ -521,9 +521,9 @@ export type UserUncheckedCreateWithoutProfileInput = {
   userType?: $Enums.UserType
   createdAt?: Date | string
   updatedAt?: Date | string
-  recyclableMaterials?: Prisma.RecyclableMaterialUncheckedCreateNestedManyWithoutUserInput
   purchasesMade?: Prisma.MaterialPurchaseUncheckedCreateNestedManyWithoutBuyerInput
   materialsSold?: Prisma.MaterialPurchaseUncheckedCreateNestedManyWithoutSellerInput
+  recyclableMaterials?: Prisma.RecyclableMaterialUncheckedCreateNestedManyWithoutUserInput
   stripeAccount?: Prisma.StripeConnectAccountUncheckedCreateNestedOneWithoutUserInput
 }
 
@@ -552,9 +552,9 @@ export type UserUpdateWithoutProfileInput = {
   userType?: Prisma.EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  recyclableMaterials?: Prisma.RecyclableMaterialUpdateManyWithoutUserNestedInput
   purchasesMade?: Prisma.MaterialPurchaseUpdateManyWithoutBuyerNestedInput
   materialsSold?: Prisma.MaterialPurchaseUpdateManyWithoutSellerNestedInput
+  recyclableMaterials?: Prisma.RecyclableMaterialUpdateManyWithoutUserNestedInput
   stripeAccount?: Prisma.StripeConnectAccountUpdateOneWithoutUserNestedInput
 }
 
@@ -567,9 +567,9 @@ export type UserUncheckedUpdateWithoutProfileInput = {
   userType?: Prisma.EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  recyclableMaterials?: Prisma.RecyclableMaterialUncheckedUpdateManyWithoutUserNestedInput
   purchasesMade?: Prisma.MaterialPurchaseUncheckedUpdateManyWithoutBuyerNestedInput
   materialsSold?: Prisma.MaterialPurchaseUncheckedUpdateManyWithoutSellerNestedInput
+  recyclableMaterials?: Prisma.RecyclableMaterialUncheckedUpdateManyWithoutUserNestedInput
   stripeAccount?: Prisma.StripeConnectAccountUncheckedUpdateOneWithoutUserNestedInput
 }
 
@@ -582,9 +582,9 @@ export type UserCreateWithoutRecyclableMaterialsInput = {
   userType?: $Enums.UserType
   createdAt?: Date | string
   updatedAt?: Date | string
-  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
   purchasesMade?: Prisma.MaterialPurchaseCreateNestedManyWithoutBuyerInput
   materialsSold?: Prisma.MaterialPurchaseCreateNestedManyWithoutSellerInput
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
   stripeAccount?: Prisma.StripeConnectAccountCreateNestedOneWithoutUserInput
 }
 
@@ -597,9 +597,9 @@ export type UserUncheckedCreateWithoutRecyclableMaterialsInput = {
   userType?: $Enums.UserType
   createdAt?: Date | string
   updatedAt?: Date | string
-  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
   purchasesMade?: Prisma.MaterialPurchaseUncheckedCreateNestedManyWithoutBuyerInput
   materialsSold?: Prisma.MaterialPurchaseUncheckedCreateNestedManyWithoutSellerInput
+  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
   stripeAccount?: Prisma.StripeConnectAccountUncheckedCreateNestedOneWithoutUserInput
 }
 
@@ -628,9 +628,9 @@ export type UserUpdateWithoutRecyclableMaterialsInput = {
   userType?: Prisma.EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
   purchasesMade?: Prisma.MaterialPurchaseUpdateManyWithoutBuyerNestedInput
   materialsSold?: Prisma.MaterialPurchaseUpdateManyWithoutSellerNestedInput
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
   stripeAccount?: Prisma.StripeConnectAccountUpdateOneWithoutUserNestedInput
 }
 
@@ -643,9 +643,9 @@ export type UserUncheckedUpdateWithoutRecyclableMaterialsInput = {
   userType?: Prisma.EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
   purchasesMade?: Prisma.MaterialPurchaseUncheckedUpdateManyWithoutBuyerNestedInput
   materialsSold?: Prisma.MaterialPurchaseUncheckedUpdateManyWithoutSellerNestedInput
+  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
   stripeAccount?: Prisma.StripeConnectAccountUncheckedUpdateOneWithoutUserNestedInput
 }
 
@@ -658,9 +658,9 @@ export type UserCreateWithoutPurchasesMadeInput = {
   userType?: $Enums.UserType
   createdAt?: Date | string
   updatedAt?: Date | string
+  materialsSold?: Prisma.MaterialPurchaseCreateNestedManyWithoutSellerInput
   profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
   recyclableMaterials?: Prisma.RecyclableMaterialCreateNestedManyWithoutUserInput
-  materialsSold?: Prisma.MaterialPurchaseCreateNestedManyWithoutSellerInput
   stripeAccount?: Prisma.StripeConnectAccountCreateNestedOneWithoutUserInput
 }
 
@@ -673,9 +673,9 @@ export type UserUncheckedCreateWithoutPurchasesMadeInput = {
   userType?: $Enums.UserType
   createdAt?: Date | string
   updatedAt?: Date | string
+  materialsSold?: Prisma.MaterialPurchaseUncheckedCreateNestedManyWithoutSellerInput
   profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
   recyclableMaterials?: Prisma.RecyclableMaterialUncheckedCreateNestedManyWithoutUserInput
-  materialsSold?: Prisma.MaterialPurchaseUncheckedCreateNestedManyWithoutSellerInput
   stripeAccount?: Prisma.StripeConnectAccountUncheckedCreateNestedOneWithoutUserInput
 }
 
@@ -693,9 +693,9 @@ export type UserCreateWithoutMaterialsSoldInput = {
   userType?: $Enums.UserType
   createdAt?: Date | string
   updatedAt?: Date | string
+  purchasesMade?: Prisma.MaterialPurchaseCreateNestedManyWithoutBuyerInput
   profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
   recyclableMaterials?: Prisma.RecyclableMaterialCreateNestedManyWithoutUserInput
-  purchasesMade?: Prisma.MaterialPurchaseCreateNestedManyWithoutBuyerInput
   stripeAccount?: Prisma.StripeConnectAccountCreateNestedOneWithoutUserInput
 }
 
@@ -708,9 +708,9 @@ export type UserUncheckedCreateWithoutMaterialsSoldInput = {
   userType?: $Enums.UserType
   createdAt?: Date | string
   updatedAt?: Date | string
+  purchasesMade?: Prisma.MaterialPurchaseUncheckedCreateNestedManyWithoutBuyerInput
   profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
   recyclableMaterials?: Prisma.RecyclableMaterialUncheckedCreateNestedManyWithoutUserInput
-  purchasesMade?: Prisma.MaterialPurchaseUncheckedCreateNestedManyWithoutBuyerInput
   stripeAccount?: Prisma.StripeConnectAccountUncheckedCreateNestedOneWithoutUserInput
 }
 
@@ -739,9 +739,9 @@ export type UserUpdateWithoutPurchasesMadeInput = {
   userType?: Prisma.EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  materialsSold?: Prisma.MaterialPurchaseUpdateManyWithoutSellerNestedInput
   profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
   recyclableMaterials?: Prisma.RecyclableMaterialUpdateManyWithoutUserNestedInput
-  materialsSold?: Prisma.MaterialPurchaseUpdateManyWithoutSellerNestedInput
   stripeAccount?: Prisma.StripeConnectAccountUpdateOneWithoutUserNestedInput
 }
 
@@ -754,9 +754,9 @@ export type UserUncheckedUpdateWithoutPurchasesMadeInput = {
   userType?: Prisma.EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  materialsSold?: Prisma.MaterialPurchaseUncheckedUpdateManyWithoutSellerNestedInput
   profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
   recyclableMaterials?: Prisma.RecyclableMaterialUncheckedUpdateManyWithoutUserNestedInput
-  materialsSold?: Prisma.MaterialPurchaseUncheckedUpdateManyWithoutSellerNestedInput
   stripeAccount?: Prisma.StripeConnectAccountUncheckedUpdateOneWithoutUserNestedInput
 }
 
@@ -780,9 +780,9 @@ export type UserUpdateWithoutMaterialsSoldInput = {
   userType?: Prisma.EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  purchasesMade?: Prisma.MaterialPurchaseUpdateManyWithoutBuyerNestedInput
   profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
   recyclableMaterials?: Prisma.RecyclableMaterialUpdateManyWithoutUserNestedInput
-  purchasesMade?: Prisma.MaterialPurchaseUpdateManyWithoutBuyerNestedInput
   stripeAccount?: Prisma.StripeConnectAccountUpdateOneWithoutUserNestedInput
 }
 
@@ -795,9 +795,9 @@ export type UserUncheckedUpdateWithoutMaterialsSoldInput = {
   userType?: Prisma.EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  purchasesMade?: Prisma.MaterialPurchaseUncheckedUpdateManyWithoutBuyerNestedInput
   profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
   recyclableMaterials?: Prisma.RecyclableMaterialUncheckedUpdateManyWithoutUserNestedInput
-  purchasesMade?: Prisma.MaterialPurchaseUncheckedUpdateManyWithoutBuyerNestedInput
   stripeAccount?: Prisma.StripeConnectAccountUncheckedUpdateOneWithoutUserNestedInput
 }
 
@@ -810,10 +810,10 @@ export type UserCreateWithoutStripeAccountInput = {
   userType?: $Enums.UserType
   createdAt?: Date | string
   updatedAt?: Date | string
-  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
-  recyclableMaterials?: Prisma.RecyclableMaterialCreateNestedManyWithoutUserInput
   purchasesMade?: Prisma.MaterialPurchaseCreateNestedManyWithoutBuyerInput
   materialsSold?: Prisma.MaterialPurchaseCreateNestedManyWithoutSellerInput
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
+  recyclableMaterials?: Prisma.RecyclableMaterialCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutStripeAccountInput = {
@@ -825,10 +825,10 @@ export type UserUncheckedCreateWithoutStripeAccountInput = {
   userType?: $Enums.UserType
   createdAt?: Date | string
   updatedAt?: Date | string
-  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
-  recyclableMaterials?: Prisma.RecyclableMaterialUncheckedCreateNestedManyWithoutUserInput
   purchasesMade?: Prisma.MaterialPurchaseUncheckedCreateNestedManyWithoutBuyerInput
   materialsSold?: Prisma.MaterialPurchaseUncheckedCreateNestedManyWithoutSellerInput
+  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+  recyclableMaterials?: Prisma.RecyclableMaterialUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutStripeAccountInput = {
@@ -856,10 +856,10 @@ export type UserUpdateWithoutStripeAccountInput = {
   userType?: Prisma.EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
-  recyclableMaterials?: Prisma.RecyclableMaterialUpdateManyWithoutUserNestedInput
   purchasesMade?: Prisma.MaterialPurchaseUpdateManyWithoutBuyerNestedInput
   materialsSold?: Prisma.MaterialPurchaseUpdateManyWithoutSellerNestedInput
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
+  recyclableMaterials?: Prisma.RecyclableMaterialUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutStripeAccountInput = {
@@ -871,10 +871,10 @@ export type UserUncheckedUpdateWithoutStripeAccountInput = {
   userType?: Prisma.EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
-  recyclableMaterials?: Prisma.RecyclableMaterialUncheckedUpdateManyWithoutUserNestedInput
   purchasesMade?: Prisma.MaterialPurchaseUncheckedUpdateManyWithoutBuyerNestedInput
   materialsSold?: Prisma.MaterialPurchaseUncheckedUpdateManyWithoutSellerNestedInput
+  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+  recyclableMaterials?: Prisma.RecyclableMaterialUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -883,15 +883,15 @@ export type UserUncheckedUpdateWithoutStripeAccountInput = {
  */
 
 export type UserCountOutputType = {
-  recyclableMaterials: number
   purchasesMade: number
   materialsSold: number
+  recyclableMaterials: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  recyclableMaterials?: boolean | UserCountOutputTypeCountRecyclableMaterialsArgs
   purchasesMade?: boolean | UserCountOutputTypeCountPurchasesMadeArgs
   materialsSold?: boolean | UserCountOutputTypeCountMaterialsSoldArgs
+  recyclableMaterials?: boolean | UserCountOutputTypeCountRecyclableMaterialsArgs
 }
 
 /**
@@ -902,13 +902,6 @@ export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
    * Select specific fields to fetch from the UserCountOutputType
    */
   select?: Prisma.UserCountOutputTypeSelect<ExtArgs> | null
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountRecyclableMaterialsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.RecyclableMaterialWhereInput
 }
 
 /**
@@ -925,6 +918,13 @@ export type UserCountOutputTypeCountMaterialsSoldArgs<ExtArgs extends runtime.Ty
   where?: Prisma.MaterialPurchaseWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountRecyclableMaterialsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RecyclableMaterialWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -935,10 +935,10 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   userType?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  profile?: boolean | Prisma.User$profileArgs<ExtArgs>
-  recyclableMaterials?: boolean | Prisma.User$recyclableMaterialsArgs<ExtArgs>
   purchasesMade?: boolean | Prisma.User$purchasesMadeArgs<ExtArgs>
   materialsSold?: boolean | Prisma.User$materialsSoldArgs<ExtArgs>
+  profile?: boolean | Prisma.User$profileArgs<ExtArgs>
+  recyclableMaterials?: boolean | Prisma.User$recyclableMaterialsArgs<ExtArgs>
   stripeAccount?: boolean | Prisma.User$stripeAccountArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
@@ -978,10 +978,10 @@ export type UserSelectScalar = {
 
 export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "identifier" | "name" | "password" | "role" | "userType" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  profile?: boolean | Prisma.User$profileArgs<ExtArgs>
-  recyclableMaterials?: boolean | Prisma.User$recyclableMaterialsArgs<ExtArgs>
   purchasesMade?: boolean | Prisma.User$purchasesMadeArgs<ExtArgs>
   materialsSold?: boolean | Prisma.User$materialsSoldArgs<ExtArgs>
+  profile?: boolean | Prisma.User$profileArgs<ExtArgs>
+  recyclableMaterials?: boolean | Prisma.User$recyclableMaterialsArgs<ExtArgs>
   stripeAccount?: boolean | Prisma.User$stripeAccountArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -991,10 +991,10 @@ export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
-    profile: Prisma.$ProfilePayload<ExtArgs> | null
-    recyclableMaterials: Prisma.$RecyclableMaterialPayload<ExtArgs>[]
     purchasesMade: Prisma.$MaterialPurchasePayload<ExtArgs>[]
     materialsSold: Prisma.$MaterialPurchasePayload<ExtArgs>[]
+    profile: Prisma.$ProfilePayload<ExtArgs> | null
+    recyclableMaterials: Prisma.$RecyclableMaterialPayload<ExtArgs>[]
     stripeAccount: Prisma.$StripeConnectAccountPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1400,10 +1400,10 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  profile<T extends Prisma.User$profileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$profileArgs<ExtArgs>>): Prisma.Prisma__ProfileClient<runtime.Types.Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  recyclableMaterials<T extends Prisma.User$recyclableMaterialsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$recyclableMaterialsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RecyclableMaterialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   purchasesMade<T extends Prisma.User$purchasesMadeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$purchasesMadeArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MaterialPurchasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   materialsSold<T extends Prisma.User$materialsSoldArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$materialsSoldArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MaterialPurchasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  profile<T extends Prisma.User$profileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$profileArgs<ExtArgs>>): Prisma.Prisma__ProfileClient<runtime.Types.Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  recyclableMaterials<T extends Prisma.User$recyclableMaterialsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$recyclableMaterialsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RecyclableMaterialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   stripeAccount<T extends Prisma.User$stripeAccountArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$stripeAccountArgs<ExtArgs>>): Prisma.Prisma__StripeConnectAccountClient<runtime.Types.Result.GetResult<Prisma.$StripeConnectAccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1830,49 +1830,6 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * User.profile
- */
-export type User$profileArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Profile
-   */
-  select?: Prisma.ProfileSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Profile
-   */
-  omit?: Prisma.ProfileOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ProfileInclude<ExtArgs> | null
-  where?: Prisma.ProfileWhereInput
-}
-
-/**
- * User.recyclableMaterials
- */
-export type User$recyclableMaterialsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the RecyclableMaterial
-   */
-  select?: Prisma.RecyclableMaterialSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the RecyclableMaterial
-   */
-  omit?: Prisma.RecyclableMaterialOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.RecyclableMaterialInclude<ExtArgs> | null
-  where?: Prisma.RecyclableMaterialWhereInput
-  orderBy?: Prisma.RecyclableMaterialOrderByWithRelationInput | Prisma.RecyclableMaterialOrderByWithRelationInput[]
-  cursor?: Prisma.RecyclableMaterialWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.RecyclableMaterialScalarFieldEnum | Prisma.RecyclableMaterialScalarFieldEnum[]
-}
-
-/**
  * User.purchasesMade
  */
 export type User$purchasesMadeArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1918,6 +1875,49 @@ export type User$materialsSoldArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.MaterialPurchaseScalarFieldEnum | Prisma.MaterialPurchaseScalarFieldEnum[]
+}
+
+/**
+ * User.profile
+ */
+export type User$profileArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Profile
+   */
+  select?: Prisma.ProfileSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Profile
+   */
+  omit?: Prisma.ProfileOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProfileInclude<ExtArgs> | null
+  where?: Prisma.ProfileWhereInput
+}
+
+/**
+ * User.recyclableMaterials
+ */
+export type User$recyclableMaterialsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RecyclableMaterial
+   */
+  select?: Prisma.RecyclableMaterialSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the RecyclableMaterial
+   */
+  omit?: Prisma.RecyclableMaterialOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RecyclableMaterialInclude<ExtArgs> | null
+  where?: Prisma.RecyclableMaterialWhereInput
+  orderBy?: Prisma.RecyclableMaterialOrderByWithRelationInput | Prisma.RecyclableMaterialOrderByWithRelationInput[]
+  cursor?: Prisma.RecyclableMaterialWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RecyclableMaterialScalarFieldEnum | Prisma.RecyclableMaterialScalarFieldEnum[]
 }
 
 /**

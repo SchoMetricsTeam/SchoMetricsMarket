@@ -14,7 +14,8 @@ export default defineConfig({
   datasource: {
     // Type Safe env() helper
     // Does not replace the need for dotenv
-    url: env("DATABASE_URL"),
+    url: env("DATABASE_LOCAL"),
+    // url: env("DATABASE_URL"),
     // shadowDatabaseUrl: env("SHADOW_DATABASE_URL"),
   },
 });

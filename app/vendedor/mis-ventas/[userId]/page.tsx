@@ -16,6 +16,7 @@ import { SellerSalesData } from "@/types/types"
 import { generateAllSalesReport } from "@/lib/pdf-generator"
 import { SellerNavigation } from "@/app/components/seller/SellerNavigation"
 import Link from "next/link"
+import { motion } from "motion/react"
 
 
 export default function MaySalesPage() {
@@ -102,7 +103,7 @@ export default function MaySalesPage() {
 
     if (isLoading) {
         return (
-            <div className="min-h-screen bg-zinc-950">
+            <div className="min-h-screen bg-seller">
                 <SellerNavigation />
                 <LoaderCircle />
             </div>
@@ -114,7 +115,7 @@ export default function MaySalesPage() {
     }
 
     return (
-        <div className="min-h-screen bg-zinc-950">
+        <div className="min-h-screen bg-seller">
             <SellerNavigation />
             <div className="mx-auto px-4 py-8 sm:px-6 lg:px-8">
                 <div className="mb-6 flex flex-col items-start justify-center gap-3">
@@ -127,7 +128,7 @@ export default function MaySalesPage() {
                                 Mis Ventas
                             </h1>
                         </div>
-                        <p className="text-zinc-300 text-lg leading-relaxed">
+                        <p className="text-zinc-600 text-lg leading-relaxed">
                             Aquí encontrarás la tabla de tus ventas realizadas, puedes descargar el Comprobante de manera individual por cada venta o descargar el Informe de Ventas Totales
                         </p>
                     </div>
@@ -140,7 +141,12 @@ export default function MaySalesPage() {
                 </div>
 
                 {sales?.length === 0 ? (
-                    <Card className="relative border border-teal-100 shadow-md shadow-teal-100">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.1 }}
+                        className="mb-8 rounded-2xl border border-sellerBaseColor/30 bg-[#f8f7ff] p-6 shadow-xl shadow-sellerBaseColor/30"
+                    >
                         <CardContent className="flex flex-col items-center justify-center py-12">
                             <Box className="h-12 w-12 text-sellerBaseColor mb-4" />
                             <h3 className="text-lg font-semibold mb-2 text-sellerBaseColor">No tienes ventas realizadas</h3>
@@ -151,7 +157,8 @@ export default function MaySalesPage() {
                                 <a href="/comprador/materiales-disponibles">Ver Materiales Disponibles</a>
                             </Button>
                         </CardContent>
-                    </Card>
+                    </motion.div>
+
                 ) : (
                     <Card className="bg-[#001817] border-none text-white">
                         <CardHeader>

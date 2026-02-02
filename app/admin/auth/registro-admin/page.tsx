@@ -16,7 +16,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import toast from "react-hot-toast";
-import Image from "next/legacy/image";
 
 // Definimos el color de acento moderno y vibrante (Esmeralda/Verde)
 const ACCENT_COLOR = "text-emerald-400"; // Usaremos este color para acentos, iconos y enlaces.
@@ -121,9 +120,9 @@ export default function AdminRegistroPage() {
           </CardDescription>
 
           {/* Botón de volver a Login con estilo minimalista */}
-          <Link href="/admin/auth/login-admin" className="w-full">
+          <Link href="/admin/materiales-comprados">
             <Button variant="link" className={`text-sm ${ACCENT_COLOR} hover:text-emerald-300 cursor-pointer`}>
-              ← Volver al Inicio de Sesión
+              ← Volver a Inicio
             </Button>
           </Link>
         </CardHeader>

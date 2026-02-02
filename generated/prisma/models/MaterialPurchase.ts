@@ -425,8 +425,8 @@ export type MaterialPurchaseWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"MaterialPurchase"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"MaterialPurchase"> | Date | string
   buyer?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  seller?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   material?: Prisma.XOR<Prisma.RecyclableMaterialScalarRelationFilter, Prisma.RecyclableMaterialWhereInput>
+  seller?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
 export type MaterialPurchaseOrderByWithRelationInput = {
@@ -460,8 +460,8 @@ export type MaterialPurchaseOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   buyer?: Prisma.UserOrderByWithRelationInput
-  seller?: Prisma.UserOrderByWithRelationInput
   material?: Prisma.RecyclableMaterialOrderByWithRelationInput
+  seller?: Prisma.UserOrderByWithRelationInput
 }
 
 export type MaterialPurchaseWhereUniqueInput = Prisma.AtLeast<{
@@ -498,8 +498,8 @@ export type MaterialPurchaseWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"MaterialPurchase"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"MaterialPurchase"> | Date | string
   buyer?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  seller?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   material?: Prisma.XOR<Prisma.RecyclableMaterialScalarRelationFilter, Prisma.RecyclableMaterialWhereInput>
+  seller?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id">
 
 export type MaterialPurchaseOrderByWithAggregationInput = {
@@ -602,8 +602,8 @@ export type MaterialPurchaseCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   buyer: Prisma.UserCreateNestedOneWithoutPurchasesMadeInput
-  seller: Prisma.UserCreateNestedOneWithoutMaterialsSoldInput
   material: Prisma.RecyclableMaterialCreateNestedOneWithoutPurchasesInput
+  seller: Prisma.UserCreateNestedOneWithoutMaterialsSoldInput
 }
 
 export type MaterialPurchaseUncheckedCreateInput = {
@@ -666,8 +666,8 @@ export type MaterialPurchaseUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   buyer?: Prisma.UserUpdateOneRequiredWithoutPurchasesMadeNestedInput
-  seller?: Prisma.UserUpdateOneRequiredWithoutMaterialsSoldNestedInput
   material?: Prisma.RecyclableMaterialUpdateOneRequiredWithoutPurchasesNestedInput
+  seller?: Prisma.UserUpdateOneRequiredWithoutMaterialsSoldNestedInput
 }
 
 export type MaterialPurchaseUncheckedUpdateInput = {
@@ -1082,8 +1082,8 @@ export type MaterialPurchaseCreateWithoutBuyerInput = {
   stripeTransferId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  seller: Prisma.UserCreateNestedOneWithoutMaterialsSoldInput
   material: Prisma.RecyclableMaterialCreateNestedOneWithoutPurchasesInput
+  seller: Prisma.UserCreateNestedOneWithoutMaterialsSoldInput
 }
 
 export type MaterialPurchaseUncheckedCreateWithoutBuyerInput = {
@@ -1443,8 +1443,8 @@ export type MaterialPurchaseUpdateWithoutBuyerInput = {
   stripeTransferId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  seller?: Prisma.UserUpdateOneRequiredWithoutMaterialsSoldNestedInput
   material?: Prisma.RecyclableMaterialUpdateOneRequiredWithoutPurchasesNestedInput
+  seller?: Prisma.UserUpdateOneRequiredWithoutMaterialsSoldNestedInput
 }
 
 export type MaterialPurchaseUncheckedUpdateWithoutBuyerInput = {
@@ -1759,8 +1759,8 @@ export type MaterialPurchaseSelect<ExtArgs extends runtime.Types.Extensions.Inte
   createdAt?: boolean
   updatedAt?: boolean
   buyer?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  seller?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   material?: boolean | Prisma.RecyclableMaterialDefaultArgs<ExtArgs>
+  seller?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["materialPurchase"]>
 
 export type MaterialPurchaseSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1794,8 +1794,8 @@ export type MaterialPurchaseSelectCreateManyAndReturn<ExtArgs extends runtime.Ty
   createdAt?: boolean
   updatedAt?: boolean
   buyer?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  seller?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   material?: boolean | Prisma.RecyclableMaterialDefaultArgs<ExtArgs>
+  seller?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["materialPurchase"]>
 
 export type MaterialPurchaseSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1829,8 +1829,8 @@ export type MaterialPurchaseSelectUpdateManyAndReturn<ExtArgs extends runtime.Ty
   createdAt?: boolean
   updatedAt?: boolean
   buyer?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  seller?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   material?: boolean | Prisma.RecyclableMaterialDefaultArgs<ExtArgs>
+  seller?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["materialPurchase"]>
 
 export type MaterialPurchaseSelectScalar = {
@@ -1868,26 +1868,26 @@ export type MaterialPurchaseSelectScalar = {
 export type MaterialPurchaseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "purchaseFolio" | "buyerId" | "buyerName" | "buyerEmail" | "buyerRFC" | "buyerPhone" | "buyerAddress" | "sellerId" | "materialId" | "materialTitle" | "materialType" | "quantity" | "pricePerKg" | "totalAmount" | "platformFeeAmount" | "sellerAmount" | "transporterName" | "transporterPhone" | "transporterCredential" | "collectionDate" | "collectionTime" | "collectionAddress" | "paymentStatus" | "paymentMethod" | "stripePaymentIntentId" | "stripeTransferId" | "createdAt" | "updatedAt", ExtArgs["result"]["materialPurchase"]>
 export type MaterialPurchaseInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   buyer?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  seller?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   material?: boolean | Prisma.RecyclableMaterialDefaultArgs<ExtArgs>
+  seller?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type MaterialPurchaseIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   buyer?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  seller?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   material?: boolean | Prisma.RecyclableMaterialDefaultArgs<ExtArgs>
+  seller?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type MaterialPurchaseIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   buyer?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  seller?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   material?: boolean | Prisma.RecyclableMaterialDefaultArgs<ExtArgs>
+  seller?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 
 export type $MaterialPurchasePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "MaterialPurchase"
   objects: {
     buyer: Prisma.$UserPayload<ExtArgs>
-    seller: Prisma.$UserPayload<ExtArgs>
     material: Prisma.$RecyclableMaterialPayload<ExtArgs>
+    seller: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2314,8 +2314,8 @@ readonly fields: MaterialPurchaseFieldRefs;
 export interface Prisma__MaterialPurchaseClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   buyer<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  seller<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   material<T extends Prisma.RecyclableMaterialDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RecyclableMaterialDefaultArgs<ExtArgs>>): Prisma.Prisma__RecyclableMaterialClient<runtime.Types.Result.GetResult<Prisma.$RecyclableMaterialPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  seller<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

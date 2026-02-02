@@ -109,25 +109,24 @@ export default function PublishedMaterialsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-950">
+    <div className="min-h-screen bg-buyer">
       <BuyerNavBar />
 
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-size-[64px_64px]" />
-      <div className="absolute left-1/4 top-20 h-96 w-max animate-pulse rounded-full bg-linear-to-br from-emerald-900/30 to-teal-900/30 blur-3xl" style={{ animationDuration: '4s' }} />
-      <div className="absolute right-1/4 bottom-20 h-96 w-96 animate-pulse rounded-full bg-linear-to-tr from-teal-900/30 to-emerald-900/30 blur-3xl" style={{ animationDuration: '6s', animationDelay: '2s' }} />
+      <div className="absolute left-1/4 top-20 h-96 w-max animate-pulse rounded-full bg-linear-to-br from-emerald-200/30 to-teal-200/30 blur-3xl" style={{ animationDuration: '4s' }} />
+      <div className="absolute right-1/4 bottom-20 h-96 w-96 animate-pulse rounded-full bg-linear-to-tr from-teal-200/30 to-emerald-200/30 blur-3xl" style={{ animationDuration: '6s', animationDelay: '2s' }} />
 
       <div className="container mt-10 mx-auto px-6 py-8 sm:px-6 lg:px-8 relative">
         <div className="mb-10">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 bg-linear-to-br from-emerald-100/20 to-teal-500/20 rounded-lg border border-emerald-300/30">
-              <Box className="h-6 w-6 text-emerald-400 animate-spin" />
+              <Box className="h-6 w-6 text-teal-600 animate-spin" />
             </div>
             <h1 className="text-4xl font-bold bg-linear-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent">
               Materiales Reciclables Disponibles
             </h1>
           </div>
-          <p className="text-zinc-300 text-lg leading-relaxed">
-            Aquí podrás encontrar materiales reciclables publicados por escuelas de todo México
+          <p className="text-zinc-600 text-lg leading-relaxed">
+            Aquí podrás encontrar materiales reciclables publicados de todo México
           </p>
         </div>
 
@@ -135,20 +134,20 @@ export default function PublishedMaterialsPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="mb-8 rounded-2xl border border-teal-900 bg-[#001817] p-6 shadow-lg shadow-teal-950"
+          className="mb-8 rounded-2xl border border-teal-200 bg-[#f0fffa] p-6 shadow-xl shadow-teal-100"
         >
           <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-2">
-              <div className="rounded-lg bg-emerald-100 p-2">
+              <div className="rounded-lg bg-white p-2 border border-teal-200">
                 <Filter className="h-5 w-5 text-emerald-600" />
               </div>
-              <h2 className="text-lg font-semibold text-teal-100">Filtros de búsqueda</h2>
+              <h2 className="text-lg font-semibold text-teal-600">Filtros de búsqueda</h2>
             </div>
             <Button
               variant="outline"
               size="sm"
               onClick={clearFilters}
-              className="group border-emerald-200 text-emerald-700 transition-all duration-300 hover:border-emerald-500 hover:bg-emerald-50 cursor-pointer hover:text-emerald-500"
+              className="group border-emerald-200 text-emerald-700 transition-all duration-300 hover:border-emerald-500 hover:bg-white cursor-pointer hover:text-emerald-600"
             >
               <X className="mr-2 h-4 w-4 transition-transform duration-300 group-hover:rotate-90" />
               Limpiar filtros
@@ -157,7 +156,7 @@ export default function PublishedMaterialsPage() {
 
           <div className="grid gap-5 md:grid-cols-3">
             <div className="space-y-2">
-              <label className="text-sm font-semibold text-teal-100">Buscar por nombre</label>
+              <label className="text-sm font-semibold text-teal-600">Buscar por nombre</label>
               <div className="relative group">
                 <Search className="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400 transition-colors group-focus-within:text-emerald-600" />
                 <Input
@@ -170,7 +169,7 @@ export default function PublishedMaterialsPage() {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-semibold text-teal-100">Tipo de Material</label>
+              <label className="text-sm font-semibold text-teal-600">Tipo de Material</label>
               <Select value={selectedMaterialType} onValueChange={setSelectedMaterialType}>
                 <SelectTrigger className="h-11 border-slate-200 bg-white transition-all duration-300 hover:border-emerald-500 cursor-pointer">
                   <SelectValue placeholder="Todos los tipos" />
@@ -187,7 +186,7 @@ export default function PublishedMaterialsPage() {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-semibold text-teal-100">Estado</label>
+              <label className="text-sm font-semibold text-teal-600">Estado</label>
               <Select value={selectedState} onValueChange={setSelectedState}>
                 <SelectTrigger className="h-11 border-slate-200 bg-white transition-all duration-300 hover:border-emerald-500 cursor-pointer">
                   <SelectValue placeholder="Todos los estados" />
@@ -205,7 +204,7 @@ export default function PublishedMaterialsPage() {
           </div>
 
           <div className="flex flex-col justify-center items-center gap-2 sm:flex-row w-full sm:items-center sm:justify-between">
-            <div className="mt-6 flex items-center gap-3 rounded-xl bg-linear-to-r from-emerald-50 to-teal-50 border border-emerald-200/50 px-4 py-3 w-fit">
+            <div className="mt-6 flex items-center gap-3 rounded-xl bg-white border border-emerald-200/50 px-4 py-3 w-fit">
               <div className="flex items-center gap-2">
                 <div className="relative h-2 w-2">
                   <div className="absolute inset-0 rounded-full bg-emerald-500 animate-ping" />

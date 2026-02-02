@@ -12,32 +12,32 @@ import { SellerNavBar } from "@/app/components/seller/SellerNavBar";
 
 export default function GuiaReciclajePage() {
     return (
-        <div className="min-h-screen bg-zinc-950 text-white w-full">
+        <div className="min-h-screen bg-white w-full">
             <SellerNavBar />
             <div className="flex flex-col justify-center items-center relative">
                 <div className="mb-10 mt-10">
                     <div className="flex flex-col items-center justify-center text-center gap-3 mb-3">
-                        <div className="p-2 bg-sellerBaseColor/5 rounded-lg border border-indigo-400">
-                            <Lightbulb className="h-6 w-6 text-amber-300" />
+                        <div className="p-2 bg-white rounded-lg border-2 border-amber-300">
+                            <Lightbulb className="h-6 w-6 text-amber-400 animate-bounce" />
                         </div>
                         <h1 className="text-4xl font-bold text-sellerBaseColor">
                             Guía para la Gestión de Materiales Reciclables
                         </h1>
                     </div>
-                    <p className="text-zinc-300 text-lg leading-relaxed px-3 text-center">
+                    <p className="text-zinc-600 text-lg leading-relaxed px-3 text-center">
                         ¡Prepara tus materiales correctamente y maximiza tus ganancias!
                     </p>
                 </div>
                 <main className="flex flex-col justify-center items-center w-full px-10 mb-10 gap-8 lg:px-20 xl:px-40">
                     {/* Sección de Introducción */}
-                    <Card className="w-full bg-[#0b022b] shadow-md shadow-indigo-950 border-indigo-950 text-white">
+                    <Card className="w-full bg-white shadow-md shadow-indigo-200 border-sellerBaseColor/30 text-sellerBaseColor">
                         <CardHeader>
                             <CardTitle className="flex items-center gap-2 text-lg">
                                 <Package size={24} />
                                 ¿Por qué es importante preparar los materiales?
                             </CardTitle>
-                            <CardDescription className="text-amber-300 animate-pulse text-md flex gap-2 items-center">
-                                <Brain className="w-5 h-5 text-amber-300" />
+                            <CardDescription className="text-green-600 animate-pulse text-md flex gap-2 items-center">
+                                <Brain className="w-5 h-5 text-green-600" />
                                 Una correcta separación y limpieza no solo facilita el tratamiento del material, también
                                 aumenta la visibilidad de tus materiales y las probabilidades de su venta se incrementan.
                             </CardDescription>
@@ -45,7 +45,7 @@ export default function GuiaReciclajePage() {
                     </Card>
 
                     {/* Acordeón con cada material */}
-                    <Accordion type="single" collapsible className="w-full">
+                    <Accordion type="single" collapsible className="w-full bg-white rounded-md p-4">
 
                         {/* Papel y Cartón */}
                         <AccordionItem value="item-1">
@@ -181,10 +181,9 @@ export default function GuiaReciclajePage() {
                     </Accordion>
 
                     {/* Sección de Pesaje */}
-                    <Alert className="bg-[#0b022b] shadow-md shadow-indigo-950 border-indigo-950 text-white">
-                        <Scale className="h-6 w-6" />
-                        <AlertTitle className="font-semibold text-lg">¿Cómo pesar los materiales?</AlertTitle>
-                        <AlertDescription className="mt-2 space-y-3 text-purple-200">
+                    <Alert className="bg-white shadow-md shadow-indigo-200 border-sellerBaseColor/30 p-4">
+                        <AlertTitle className="font-semibold text-lg text-sellerBaseColor">¿Cómo pesar los materiales?</AlertTitle>
+                        <AlertDescription className="mt-2 space-y-3 text-green-600">
                             <p>
                                 Obtener el peso correcto en kilogramos (Kg) es crucial para la venta. Aquí tienes métodos prácticos:
                             </p>

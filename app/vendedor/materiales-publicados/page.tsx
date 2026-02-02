@@ -35,6 +35,7 @@ import { RecyclableMaterialContentImages } from "@/app/components/RecyclableMate
 import toast from "react-hot-toast"
 import type { MaterialType } from "@/generated/prisma/client"
 import { SellerNavBar } from "@/app/components/seller/SellerNavBar"
+import { motion } from "motion/react"
 
 const ITEMS_PER_PAGE = 9
 
@@ -160,7 +161,7 @@ export default function SellerPublishedMaterialsPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-zinc-950">
+      <div className="min-h-screen bg-seller">
         <SellerNavBar />
         <LoaderCircle />
       </div>
@@ -169,7 +170,7 @@ export default function SellerPublishedMaterialsPage() {
 
   return (
     // Rediseño del fondo a un esquema oscuro y minimalista
-    <div className="min-h-screen bg-zinc-950 text-sellerBaseColor relative">
+    <div className="min-h-screen bg-seller text-sellerBaseColor relative">
       <SellerNavBar />
       <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8 relative z-10">
         {/* === HEADER Y TÍTULO === */}
@@ -182,24 +183,32 @@ export default function SellerPublishedMaterialsPage() {
               Mis Materiales Publicados
             </h1>
           </div>
-          <p className="text-gray-300 text-lg leading-relaxed">
+          <p className="text-gray-500 text-lg leading-relaxed">
             Visualiza tus materiales reciclables publicados y comprados.
           </p>
         </div>
 
         {/* === ESTADO VACÍO === */}
         {(!recyclableMaterials?.recyclableMaterials || recyclableMaterials.recyclableMaterials.length === 0) ? (
-          <div className="text-center py-20 bg-gray-800/50 rounded-xl border border-gray-700 relative">
-            <p className="text-gray-400 mb-6 text-xl">
-              ¡Aún no tienes materiales publicados!
-            </p>
-            <Link href="/vendedor/publicar-materiales">
-              <Button className={`px-8 py-3 font-semibold bg-sellerBaseColor hover:bg-sellerBaseColor/90 text-white transition-all shadow-lg shadow-sellerBaseColor/40 cursor-pointer`}>
-                <PackagePlus className="h-5 w-5 mr-2" />
-                Publicar mi primer material
-              </Button>
-            </Link>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mb-8 rounded-2xl border border-sellerBaseColor/30 bg-[#f8f7ff] p-6 shadow-xl shadow-sellerBaseColor/30"
+          >
+            <div className="text-center py-20 ">
+              <p className="text-gray-400 mb-6 text-xl">
+                ¡Aún no tienes materiales publicados!
+              </p>
+              <Link href="/vendedor/publicar-materiales">
+                <Button className={`px-8 py-3 font-semibold bg-sellerBaseColor hover:bg-sellerBaseColor/90 text-white transition-all shadow-lg shadow-sellerBaseColor/40 cursor-pointer`}>
+                  <PackagePlus className="h-5 w-5 mr-2" />
+                  Publicar mi primer material
+                </Button>
+              </Link>
+            </div>
+          </motion.div>
+
         ) : (
           /* === FILTROS Y RESULTADOS === */
           <div className="mb-10 p-6 bg-[#06001b] rounded-xl border-sellerBaseColor/10 border-2 shadow-md shadow-[#1b005a]">

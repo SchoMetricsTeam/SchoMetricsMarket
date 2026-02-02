@@ -8,7 +8,8 @@ declare global {
 }
 
 const adapter = new PrismaPg({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: process.env.DATABASE_LOCAL,
+  // connectionString: process.env.DATABASE_URL,
 });
 // Creación de la instancia de prisma
 const prisma = globalThis.prismaGlobal ?? new PrismaClient({ adapter });

@@ -105,14 +105,14 @@ export default function LoginPage() {
                         </p>
                         <div className="mt-2 flex items-center justify-center gap-3 text-xs text-slate-500">
                             <Link
-                                href="https://schometrics.website/terminos"
+                                href="https://schometrics.com/terminos-y-condiciones"
                                 className="transition-colors hover:text-emerald-600"
                             >
                                 Términos
                             </Link>
                             <span className="text-slate-300">•</span>
                             <Link
-                                href="https://schometrics.website/privacidad"
+                                href="https://schometrics.com/politicas-de-privacidad"
                                 className="transition-colors hover:text-emerald-600"
                             >
                                 Privacidad

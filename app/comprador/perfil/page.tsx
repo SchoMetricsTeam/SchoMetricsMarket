@@ -300,7 +300,7 @@ export default function BuyerProfilePage() {
         );
     }
     return (
-        <div>
+        <div className="bg-buyer">
             <BuyerNavigation />
             {AvatarInput()}
             <div className="m-5 flex flex-col gap-8 sm:m-10">
