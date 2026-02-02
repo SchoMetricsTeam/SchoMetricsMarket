@@ -1,16 +1,31 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
+import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
-import { Mail, Clock } from "lucide-react"
+import { Mail, Clock, Send, Recycle, Sparkles, Megaphone } from "lucide-react"
 import { toast, Toaster } from "react-hot-toast"
 import { Navigation } from "@/components/ui/navigation"
+
+// Variantes de animación para reusar
+const fadeInUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+}
+
+const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.2
+        }
+    }
+}
 
 export default function ContactoPage() {
     const [formData, setFormData] = useState({
@@ -19,198 +34,214 @@ export default function ContactoPage() {
         institucion: "",
         mensaje: "",
     })
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setIsSubmitting(true);
         try {
             const response = await fetch("/api/contact", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData),
             });
 
             if (response.ok) {
-                console.log("Formulario enviado:", formData);
-                toast.success("¡Gracias por contactarnos! Te responderemos pronto.");
+                toast.success("¡Mensaje enviado! Juntos hacemos el cambio.");
                 setFormData({ nombre: "", email: "", institucion: "", mensaje: "" });
             } else {
-                toast.error("Hubo un error al enviar el mensaje. Por favor, intenta de nuevo.");
+                toast.error("Ups, algo falló. Inténtalo de nuevo.");
             }
         } catch (error) {
-            console.error("Error al enviar el formulario:", error);
-            toast.error("Hubo un error al enviar el mensaje. Por favor, intenta de nuevo.");
+            console.error(error);
+            toast.error("Error de conexión. Verifica tu internet.");
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value,
-        })
+        setFormData({ ...formData, [e.target.name]: e.target.value })
     }
 
     return (
-        <div className="min-h-screen bg-slate-50">
+        <div className="min-h-screen bg-slate-50 dark:bg-slate-950 relative overflow-hidden">
             <Navigation />
-            {/* Hero Section */}
-            <section className="container mt-10 py-20 px-4 sm:px-6 lg:px-8">
-                <div className="max-w-7xl mx-auto">
-                    <div className="text-center mb-16 animate-fade-in-up">
-                        <h1 className="text-4xl md:text-5xl font-bold text-primary mb-6 text-balance">Contáctanos</h1>
-                        <p className="text-xl text-lime-600 max-w-3xl mx-auto text-pretty pt-5">
-                            ¿Tienes preguntas sobre SchoMetrics? Estamos aquí para ayudarte a transformar tu institución educativa con
-                            prácticas sostenibles.
-                        </p>
-                        <p className="text-xl text-emerald-500 max-w-3xl mx-auto text-pretty pt-5">
-                            ¿Eres una Empresa Recicladora y quieres formar parte de esta transformación?
-                        </p>
-                    </div>
 
-                    <div className="grid lg:grid-cols-2 gap-12">
-                        {/* Contact Form */}
-                        <Card className="border-border shadow-lg">
-                            <CardHeader>
-                                <CardTitle className="text-2xl text-primary">Envíanos un Mensaje</CardTitle>
-                            </CardHeader>
-                            <CardContent>
-                                <form onSubmit={handleSubmit} className="space-y-6">
-                                    <div className="grid md:grid-cols-2 gap-4">
-                                        <div className="space-y-2">
-                                            <Label htmlFor="nombre" className="text-foreground">
-                                                Nombre Completo
-                                            </Label>
-                                            <Input
-                                                id="nombre"
-                                                name="nombre"
-                                                type="text"
-                                                value={formData.nombre}
-                                                onChange={handleChange}
-                                                required
-                                                className="border-border focus:ring-accent focus:border-accent"
-                                                placeholder="Tu nombre completo"
-                                            />
-                                        </div>
-                                        <div className="space-y-2">
-                                            <Label htmlFor="email" className="text-foreground">
-                                                Correo Electrónico
-                                            </Label>
-                                            <Input
-                                                id="email"
-                                                name="email"
-                                                type="email"
-                                                value={formData.email}
-                                                onChange={handleChange}
-                                                required
-                                                className="border-border focus:ring-accent focus:border-accent"
-                                                placeholder="tu@email.com"
-                                            />
-                                        </div>
-                                    </div>
+            <motion.section
+                initial="hidden"
+                animate="visible"
+                variants={staggerContainer}
+                className="relative z-10 pt-24 pb-20 px-4 sm:px-6 lg:px-8 mx-auto"
+            >
+                {/* Header Section */}
+                <div className="max-w-4xl mx-auto text-center mb-16 pt-10">
+                    <motion.div variants={fadeInUp as any} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-emerald-900/30 text-blue-700 dark:text-blue-300 text-sm font-medium mb-6">
+                        <Megaphone className="w-4 h-4" /> Contáctanos
+                    </motion.div>
 
-                                    <div className="space-y-2">
-                                        <Label htmlFor="institucion" className="text-foreground">
-                                            Institución Educativa o Nombre De Tu Empresa
-                                        </Label>
+                    <motion.h1 variants={fadeInUp as any} className="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-700 dark:text-white mb-6">
+                        Conectemos por un futuro <br />
+                        <span className="text-transparent bg-clip-text bg-linear-to-r from-emerald-500 to-blue-600">
+                            más sostenible
+                        </span>
+                    </motion.h1>
+
+                    <motion.p variants={fadeInUp as any} className="text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
+                        Si necesitas Comprar o Vender materiales reciclables, generar excelentes ingresos y contribuir al medio ambiente, SchoMetrics es tu mejor opción.
+                    </motion.p>
+                </div>
+
+                <div className="grid lg:grid-cols-12 gap-12 items-start max-w-7xl mx-auto">
+
+                    {/* Form Column */}
+                    <motion.div variants={fadeInUp as any} className="lg:col-span-7">
+                        <div className="backdrop-blur-xl bg-white/70 dark:bg-slate-900/70 border border-white/20 dark:border-slate-800 rounded-3xl p-8 shadow-2xl shadow-slate-200/50 dark:shadow-none">
+                            <div className="mb-8">
+                                <h3 className="text-2xl font-bold text-slate-900 dark:text-white">Envíanos un mensaje</h3>
+                                <p className="text-slate-500 dark:text-slate-400">Responderemos en menos de 24 horas hábiles.</p>
+                            </div>
+
+                            <form onSubmit={handleSubmit} className="space-y-6">
+                                <div className="grid md:grid-cols-2 gap-6">
+                                    <div className="space-y-2 group">
+                                        <Label htmlFor="nombre" className="text-slate-700 dark:text-slate-300 font-medium">Nombre Completo</Label>
                                         <Input
-                                            id="institucion"
-                                            name="institucion"
-                                            type="text"
-                                            value={formData.institucion}
-                                            onChange={handleChange}
-                                            className="border-border focus:ring-accent focus:border-accent"
-                                            placeholder="Nombre de tu escuela o empresa"
-                                        />
-                                    </div>
-
-                                    <div className="space-y-2">
-                                        <Label htmlFor="mensaje" className="text-foreground">
-                                            Mensaje
-                                        </Label>
-                                        <Textarea
-                                            id="mensaje"
-                                            name="mensaje"
-                                            value={formData.mensaje}
+                                            id="nombre"
+                                            name="nombre"
+                                            value={formData.nombre}
                                             onChange={handleChange}
                                             required
-                                            rows={5}
-                                            className="border-border focus:ring-accent focus:border-accent resize-none"
-                                            placeholder="Cuéntanos cómo podemos ayudarte con tus iniciativas sostenibles..."
+                                            className="h-12 bg-white/50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-700 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-300"
+                                            placeholder="Ej. Juan Pérez"
                                         />
                                     </div>
+                                    <div className="space-y-2">
+                                        <Label htmlFor="email" className="text-slate-700 dark:text-slate-300 font-medium">Correo Electrónico</Label>
+                                        <Input
+                                            id="email"
+                                            name="email"
+                                            type="email"
+                                            value={formData.email}
+                                            onChange={handleChange}
+                                            required
+                                            className="h-12 bg-white/50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-700 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-300"
+                                            placeholder="juan@ejemplo.com"
+                                        />
+                                    </div>
+                                </div>
 
-                                    <Button type="submit" className="w-full bg-schoMetricsBaseColor/80 hover:bg-schoMetricsBaseColor text-white" size="lg">
-                                        Enviar Mensaje
-                                    </Button>
-                                </form>
-                                <Toaster toastOptions={{ duration: 5000 }} />
-                            </CardContent>
-                        </Card>
+                                <div className="space-y-2">
+                                    <Label htmlFor="institucion" className="text-slate-700 dark:text-slate-300 font-medium">Institución / Empresa / Independiente</Label>
+                                    <Input
+                                        id="institucion"
+                                        name="institucion"
+                                        value={formData.institucion}
+                                        onChange={handleChange}
+                                        className="h-12 bg-white/50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-700 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-300"
+                                        placeholder="Nombre de la escuela, organización o negocio"
+                                    />
+                                </div>
 
-                        {/* Contact Information */}
-                        <div className="space-y-8">
-                            <Card className="border-border shadow-lg">
-                                <CardHeader>
-                                    <CardTitle className="text-2xl text-primary">Información de Contacto</CardTitle>
-                                </CardHeader>
-                                <CardContent className="space-y-6">
-                                    <div className="flex items-start space-x-4">
-                                        <div className="bg-primary/10 p-3 rounded-lg">
-                                            <Mail className="h-6 w-6 text-primary" />
-                                        </div>
-                                        <div>
-                                            <h3 className="font-semibold text-foreground">Email</h3>
-                                            <p className="text-muted-foreground">contacto@schometrics.com</p>
-                                        </div>
-                                    </div>
+                                <div className="space-y-2">
+                                    <Label htmlFor="mensaje" className="text-slate-700 dark:text-slate-300 font-medium">¿Cómo podemos ayudarte?</Label>
+                                    <Textarea
+                                        id="mensaje"
+                                        name="mensaje"
+                                        value={formData.mensaje}
+                                        onChange={handleChange}
+                                        required
+                                        rows={5}
+                                        className="bg-white/50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-700 focus:ring-emerald-500 focus:border-emerald-500 resize-none transition-all duration-300"
+                                        placeholder="Escribe tu mensaje aquí..."
+                                    />
+                                </div>
 
-                                    <div className="flex items-start space-x-4">
-                                        <div className="bg-primary/10 p-3 rounded-lg">
-                                            <Clock className="h-6 w-6 text-primary" />
-                                        </div>
-                                        <div>
-                                            <h3 className="font-semibold text-foreground">Horario de Atención</h3>
-                                            <p className="text-muted-foreground">
-                                                Lunes a Viernes: 8:00 AM - 6:00 PM
-                                                <br />
-                                                Sábados: 9:00 AM - 2:00 PM
-                                            </p>
-                                        </div>
-                                    </div>
-                                </CardContent>
-                            </Card>
-
-                            {/* FAQ Section */}
-                            <Card className="border-border shadow-lg">
-                                <CardHeader>
-                                    <CardTitle className="text-xl text-primary">Preguntas Frecuentes</CardTitle>
-                                </CardHeader>
-                                <CardContent className="space-y-4">
-                                    <div>
-                                        <h4 className="font-semibold text-foreground mb-2">¿Cómo puedo registrar mi Escuela o Empresa?</h4>
-                                        <span className="text-sm text-muted-foreground">
-                                            Puedes comunicarte directamente completando el formulario o envía un correo a <p ><a className="text-schoMetricsBaseColor font-semibold" href="mailto:contacto@schometrics.com">contacto@schometrics.com</a> para recibir asistencia personalizada.</p>
-                                        </span>
-                                    </div>
-                                    <div>
-                                        <h4 className="font-semibold text-foreground mb-2">¿Ofrecen capacitación?</h4>
-                                        <p className="text-sm text-muted-foreground">
-                                            Sí, ofrecemos programas de capacitación completos para administradores, docentes y estudiantes.
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <h4 className="font-semibold text-foreground mb-2">¿Cuál es el costo de la plataforma?</h4>
-                                        <p className="text-sm text-muted-foreground">
-                                            El uso de la plataforma es completamente gratuito. Contáctanos para obtener información más detallada.
-                                        </p>
-                                    </div>
-                                </CardContent>
-                            </Card>
+                                <Button
+                                    type="submit"
+                                    disabled={isSubmitting}
+                                    className="w-full h-12 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-lg rounded-xl shadow-lg shadow-emerald-500/20 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+                                >
+                                    {isSubmitting ? (
+                                        <span className="flex items-center gap-2">Enviando... <Recycle className="animate-spin h-5 w-5" /></span>
+                                    ) : (
+                                        <span className="flex items-center gap-2">Enviar Mensaje <Send className="h-5 w-5" /></span>
+                                    )}
+                                </Button>
+                            </form>
                         </div>
-                    </div>
+                    </motion.div>
+
+                    {/* Info Column */}
+                    <motion.div variants={fadeInUp as any} className="lg:col-span-5 space-y-8">
+
+                        {/* Info Cards */}
+                        <div className="grid gap-6">
+                            <div className="p-6 rounded-2xl bg-white dark:bg-slate-900 shadow-lg border border-slate-100 dark:border-slate-800 flex items-start gap-4">
+                                <div className="p-3 bg-blue-100 dark:bg-blue-900/30 rounded-xl text-blue-600 dark:text-blue-400">
+                                    <Mail className="h-6 w-6" />
+                                </div>
+                                <div>
+                                    <h4 className="font-bold text-slate-900 dark:text-white">Email Directo</h4>
+                                    <a href="mailto:contacto@schometrics.com" className="text-slate-600 dark:text-slate-400 hover:text-emerald-500 transition-colors">
+                                        contacto@schometrics.com
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div className="p-6 rounded-2xl bg-white dark:bg-slate-900 shadow-lg border border-slate-100 dark:border-slate-800 flex items-start gap-4">
+                                <div className="p-3 bg-emerald-100 dark:bg-emerald-900/30 rounded-xl text-emerald-600 dark:text-emerald-400">
+                                    <Clock className="h-6 w-6" />
+                                </div>
+                                <div>
+                                    <h4 className="font-bold text-slate-900 dark:text-white">Horario de Atención</h4>
+                                    <p className="text-slate-600 dark:text-slate-400 text-sm">
+                                        Lun - Vie: 8:00 AM - 6:00 PM<br />
+                                        Sábados: 9:00 AM - 2:00 PM
+                                    </p>
+                                </div>
+                            </div>
+
+                            {/* <div className="p-6 rounded-2xl bg-white dark:bg-slate-900 shadow-lg border border-slate-100 dark:border-slate-800 flex items-start gap-4">
+                                <div className="p-3 bg-purple-100 dark:bg-purple-900/30 rounded-xl text-purple-600 dark:text-purple-400">
+                                    <MapPin className="h-6 w-6" />
+                                </div>
+                                <div>
+                                    <h4 className="font-bold text-slate-900 dark:text-white">Oficinas</h4>
+                                    <p className="text-slate-600 dark:text-slate-400 text-sm">
+                                        Ciudad Innovación, Edificio Eco<br />
+                                        Piso 3, Oficina 301
+                                    </p>
+                                </div>
+                            </div> */}
+                        </div>
+
+                        {/* FAQ Mini */}
+                        <div className="bg-slate-100 dark:bg-slate-800/50 rounded-3xl p-8 border border-slate-200 dark:border-slate-700">
+                            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-6">Preguntas Rápidas</h3>
+                            <div className="space-y-4">
+                                <div className="pb-4 border-b border-slate-200 dark:border-slate-700 last:border-0 last:pb-0">
+                                    <h5 className="font-semibold text-slate-800 dark:text-slate-200 text-sm">¿Tiene costo el registro?</h5>
+                                    <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">
+                                        No, el registro básico para vendedores y compradores es 100% gratuito.
+                                    </p>
+                                </div>
+                                <div className="pb-4 border-b border-slate-200 dark:border-slate-700 last:border-0 last:pb-0">
+                                    <h5 className="font-semibold text-slate-800 dark:text-slate-200 text-sm">¿Qué materiales aceptan?</h5>
+                                    <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">
+                                        PET, Cartón, Aluminio y Papel, Residuos de temporada.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </motion.div>
                 </div>
-            </section>
+            </motion.section>
+
+            <Toaster toastOptions={{
+                className: '!bg-slate-900 !text-white !rounded-xl',
+                duration: 5000
+            }} />
         </div>
     )
 }
