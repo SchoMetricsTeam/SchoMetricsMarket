@@ -7,25 +7,25 @@ import { Heart, Leaf, RefreshCcw, ShieldCheck, Users } from 'lucide-react';
 const values = [
     {
         title: "Transparencia Total",
-        description: "Claridad absoluta en cada transacción entre escuelas y empresas, asegurando confianza en el proceso de reciclaje.",
+        description: "Claridad absoluta en cada transacción entre vendedores y compradores, asegurando confianza en el proceso de compra.",
         icon: ShieldCheck,
         color: "bg-blue-500/10 text-blue-600"
     },
     {
         title: "Impacto Comunitario",
-        description: "Empoderamos a las instituciones educativas para transformar sus residuos en recursos para su propio desarrollo.",
+        description: "Empoderamos a las instituciones, Organizaciones o Emprendimientos para transformar sus residuos en recursos económicos.",
         icon: Users,
         color: "bg-amber-500/10 text-amber-600"
     },
     {
         title: "Sostenibilidad Real",
-        description: "No solo reciclamos; fomentamos una economía circular medible que reduce la huella de carbono.",
+        description: "Fomentamos una economía circular que reduce la huella de carbono.",
         icon: Leaf,
         color: "bg-emerald-500/10 text-emerald-600"
     },
     {
         title: "Innovación Continua",
-        description: "Tecnología de punta para simplificar la logística y venta de materiales recuperados.",
+        description: "Tecnología de punta para simplificar la logística y venta de materiales reciclables.",
         icon: RefreshCcw,
         color: "bg-purple-500/10 text-purple-600"
     }
