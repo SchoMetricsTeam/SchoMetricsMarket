@@ -98,7 +98,7 @@ const Benefits = () => {
                                     {[
                                         { name: "Plástico PET", icon: "♻️", color: "from-blue-500/20 to-blue-600/10" },
                                         { name: "Papel y Cartón", icon: "📄", color: "from-amber-500/20 to-amber-600/10" },
-                                        { name: "Latas de Aluminio", icon: "🔩", color: "from-slate-500/20 to-slate-600/10" },
+                                        { name: "Latas de Aluminio", icon: "🥫", color: "from-slate-500/20 to-slate-600/10" },
                                         { name: "Orgánico", icon: "🌱", color: "from-green-500/20 to-green-600/10" },
                                     ].map((material, index) => (
                                         <div
