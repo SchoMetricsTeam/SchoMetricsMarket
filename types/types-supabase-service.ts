@@ -2,11 +2,11 @@ import { createClient } from "@supabase/supabase-js";
 
 export const supabaseClient = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL || "",
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ""
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "",
 );
 
 // Supabase Storage bucket name
-export const bucketName = "schometrics-marketplace";
+export const bucketName = "schometrics-marketplace-2026";
 
 // Base URL for Supabase Storage
 export const supabaseStorageUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${bucketName}`;
