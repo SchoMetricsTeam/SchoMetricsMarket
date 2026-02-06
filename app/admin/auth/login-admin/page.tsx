@@ -88,18 +88,16 @@ export default function AdminLoginPage() {
         className={`w-full max-w-md bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl p-6 rounded-xl relative z-10`}
       >
         <CardHeader className="text-center space-y-4">
-          <div className="flex justify-center mb-4">
-            <Link href="/" className="flex items-center justify-between gap-3">
+          <Link href="/" className="flex items-center justify-center">
 //             <Image
-                src="/schometrics-logo-white.png"
-                alt="logo"
-                width={100}
-                height={100}
-                priority
-                objectFit="contain"
-              />
-            </Link>
-          </div>
+              src="/schometrics-logo-white.png"
+              alt="logo"
+              width={100}
+              height={100}
+              priority
+              objectFit="contain"
+            />
+          </Link>
           <CardTitle className={`text-3xl font-bold text-white flex items-center justify-center gap-2`}>
             ADMIN LOGIN
           </CardTitle>

@@ -10,7 +10,7 @@ export async function POST(request: Request) {
     if (!name || !identifier || !password || !adminCode) {
       return NextResponse.json(
         { error: "Todos los campos son obligatorios" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -18,11 +18,11 @@ export async function POST(request: Request) {
     if (adminCode !== process.env.ADMIN_SECRET_CODE) {
       return NextResponse.json(
         { error: "Código de administrador inválido" },
-        { status: 403 }
+        { status: 403 },
       );
     }
 
-    // Verificar si la identifier ADMIN ya está registrada
+    // Verificar si el identificador de sesión ADMIN ya está registrado
     const existingUser = await prisma.user.findUnique({
       where: { identifier },
     });
@@ -30,7 +30,7 @@ export async function POST(request: Request) {
     if (existingUser) {
       return NextResponse.json(
         { error: "Este Identificador de Sesión ya está registrado" },
-        { status: 409 }
+        { status: 409 },
       );
     }
 
@@ -61,13 +61,13 @@ export async function POST(request: Request) {
         message: "Administrador registrado exitosamente",
         userId: user.id,
       },
-      { status: 201 }
+      { status: 201 },
     );
   } catch (error) {
     console.error("Error al registrar administrador:", error);
     return NextResponse.json(
       { error: "Error al registrar administrador" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

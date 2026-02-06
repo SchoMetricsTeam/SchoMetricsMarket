@@ -21,7 +21,6 @@ import {
   CheckCircle2,
   ShieldCheck,
   ArrowRight,
-  FolderKanbanIcon
 } from "lucide-react"
 import { format } from "date-fns"
 import { es } from "date-fns/locale"
@@ -464,7 +463,7 @@ export function PurchaseForm({ material, onClose, onSuccess }: PurchaseFormProps
                       value={formData.transporterCredential || ""}
                       onChange={(e) => handleInputChange("transporterCredential", e.target.value)}
                       className={`h-11 rounded-xl transition-all focus:scale-[1.01] ${errors.transporterCredential ? "border-red-400" : ""}`}
-                      placeholder="Proporciona la CURP, RFC, Matrícula de Trabajo o dato similar"
+                      placeholder="Proporciona la CURP, RFC, Matrícula de Trabajo o información similar"
                     />
                   </div>
                 </div>
@@ -476,6 +475,7 @@ export function PurchaseForm({ material, onClose, onSuccess }: PurchaseFormProps
                   <div className="p-1.5 bg-purple-50 rounded-lg text-purple-600"><Clock className="h-4 w-4" /></div>
                   <h3>Agenda de Recolección</h3>
                 </div>
+                <p className="text-xs text-zinc-500">Es importante seleccionar una Fecha y Hora correcta para la recolección, con base en la disponibilidad de horario que fue establecida por el comprador, misma que aparece en el apartado "Horario de Recolección".</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div className="space-y-2">
                     <Label>Fecha de Recolección</Label>

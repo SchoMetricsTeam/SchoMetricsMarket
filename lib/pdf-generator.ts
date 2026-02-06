@@ -46,7 +46,7 @@ interface PurchaseReceiptData {
 }
 // Para VENDEDOR
 export function generateSaleReceiptPDF(
-  purchase: PurchaseReceiptData
+  purchase: PurchaseReceiptData,
 ): Promise<Buffer> {
   return new Promise((resolve) => {
     const doc = new jsPDF();
@@ -76,7 +76,7 @@ export function generateSaleReceiptPDF(
         locale: es,
       })}`,
       130,
-      26
+      26,
     );
 
     let yPosition = 45;
@@ -85,7 +85,7 @@ export function generateSaleReceiptPDF(
     const addSection = (
       title: string,
       content: string[],
-      startY: number
+      startY: number,
     ): number => {
       doc.setFillColor(...lightGray);
       doc.rect(15, startY - 5, 180, 8, "F");
@@ -126,7 +126,7 @@ export function generateSaleReceiptPDF(
     yPosition = addSection(
       "INFORMACIÓN DEL MATERIAL",
       materialContent,
-      yPosition
+      yPosition,
     );
 
     // Añadir el enlace de Google Maps
@@ -144,13 +144,13 @@ export function generateSaleReceiptPDF(
       [
         `Nombre: ${purchase.material.user.name}`,
         `Teléfono de Contacto: ${purchase.material.user.profile.phone}`,
-        `RFC: ${purchase.material.user.profile.rfc}`,
-        `CCT: ${purchase.material.user.profile.cct}`,
+        `RFC: ${purchase.material.user.profile.rfc.toUpperCase()}`,
+        `CCT: ${purchase.material.user.profile.cct.toUpperCase()}`,
         `Dirección: ${purchase.material.user.profile.address}`,
         `Ciudad: ${purchase.material.user.profile.city}, ${purchase.material.user.profile.state}`,
         `Código Postal: ${purchase.material.user.profile.postalCode}`,
       ],
-      yPosition
+      yPosition,
     );
 
     // Información de la Empresa Compradora
@@ -162,7 +162,7 @@ export function generateSaleReceiptPDF(
         `Dirección: ${purchase.buyerAddress}`,
         `Teléfono: ${purchase.buyerPhone}`,
       ],
-      yPosition
+      yPosition,
     );
 
     // Información del Transportista
@@ -173,7 +173,7 @@ export function generateSaleReceiptPDF(
         `Teléfono: ${purchase.transporterPhone}`,
         `Identificación del Transportista: ${purchase.transporterCredential}`,
       ],
-      yPosition
+      yPosition,
     );
 
     // Información de Recolección
@@ -186,7 +186,7 @@ export function generateSaleReceiptPDF(
         `Hora: ${purchase.collectionTime}`,
         `Zona Horaria: Ciudad de México (GMT-6)`,
       ],
-      yPosition
+      yPosition,
     );
 
     // Footer
@@ -199,12 +199,12 @@ export function generateSaleReceiptPDF(
     doc.text(
       "SchoMetrics - Promoviendo una sostenibilidad ecológica y económica en México.",
       20,
-      290
+      290,
     );
     doc.text(
       `Generado el ${format(new Date(), "dd/MM/yyyy HH:mm", { locale: es })}`,
       150,
-      290
+      290,
     );
 
     // Convert to buffer
@@ -242,7 +242,7 @@ export function generatePurchaseReceipt(purchase: PurchaseReceiptData): void {
       locale: es,
     })}`,
     130,
-    26
+    26,
   );
 
   let yPosition = 45;
@@ -251,7 +251,7 @@ export function generatePurchaseReceipt(purchase: PurchaseReceiptData): void {
   const addSection = (
     title: string,
     content: string[],
-    startY: number
+    startY: number,
   ): number => {
     doc.setFillColor(...lightGray);
     doc.rect(15, startY - 5, 180, 8, "F");
@@ -292,7 +292,7 @@ export function generatePurchaseReceipt(purchase: PurchaseReceiptData): void {
   yPosition = addSection(
     "INFORMACIÓN DEL MATERIAL",
     materialContent,
-    yPosition
+    yPosition,
   );
 
   // Añadir el enlace de Google Maps
@@ -309,13 +309,13 @@ export function generatePurchaseReceipt(purchase: PurchaseReceiptData): void {
     [
       `Nombre: ${purchase.material.user.name}`,
       `Teléfono de Contacto: ${purchase.material.user.profile.phone}`,
-      `RFC: ${purchase.material.user.profile.rfc}`,
-      `CCT: ${purchase.material.user.profile.cct}`,
+      `RFC: ${purchase.material.user.profile.rfc.toUpperCase()}`,
+      `CCT: ${purchase.material.user.profile.cct.toUpperCase()}`,
       `Dirección: ${purchase.material.user.profile.address}`,
       `Ciudad: ${purchase.material.user.profile.city}, ${purchase.material.user.profile.state}`,
       `Código Postal: ${purchase.material.user.profile.postalCode}`,
     ],
-    yPosition
+    yPosition,
   );
 
   // Información de la Empresa Compradora
@@ -327,7 +327,7 @@ export function generatePurchaseReceipt(purchase: PurchaseReceiptData): void {
       `Dirección: ${purchase.buyerAddress}`,
       `Teléfono: ${purchase.buyerPhone}`,
     ],
-    yPosition
+    yPosition,
   );
 
   // Información del Transportista
@@ -338,7 +338,7 @@ export function generatePurchaseReceipt(purchase: PurchaseReceiptData): void {
       `Teléfono: ${purchase.transporterPhone}`,
       `Identificación del Transportista: ${purchase.transporterCredential}`,
     ],
-    yPosition
+    yPosition,
   );
 
   // Información de Recolección
@@ -351,7 +351,7 @@ export function generatePurchaseReceipt(purchase: PurchaseReceiptData): void {
       `Hora: ${purchase.collectionTime}`,
       `Zona Horaria: Ciudad de México (GMT-6)`,
     ],
-    yPosition
+    yPosition,
   );
 
   // Footer
@@ -364,12 +364,12 @@ export function generatePurchaseReceipt(purchase: PurchaseReceiptData): void {
   doc.text(
     "SchoMetrics - Promoviendo una sostenibilidad ecológica y económica en México.",
     20,
-    290
+    290,
   );
   doc.text(
     `Generado el ${format(new Date(), "dd/MM/yyyy HH:mm", { locale: es })}`,
     150,
-    290
+    290,
   );
 
   // Descargar el PDF
@@ -378,13 +378,13 @@ export function generatePurchaseReceipt(purchase: PurchaseReceiptData): void {
 
 // Para COMPRADOR - COMPRAS TOTALES
 export function generateAllPurchasesReport(
-  purchases: PurchaseReceiptData[]
+  purchases: PurchaseReceiptData[],
 ): void {
   const doc = new jsPDF();
 
   // 1. Filtrar las compras que cumplen con el estado "COMPLETED" y "PURCHASED"
   const filteredPurchases = purchases.filter(
-    (p) => p.paymentStatus === "COMPLETED" && p.material.status === "PURCHASED"
+    (p) => p.paymentStatus === "COMPLETED" && p.material.status === "PURCHASED",
   );
 
   // Configuración de colores
@@ -412,7 +412,7 @@ export function generateAllPurchasesReport(
     doc.text(
       `Fecha: ${format(new Date(), "dd/MM/yyyy", { locale: es })}`,
       150,
-      26
+      26,
     );
 
     // Texto explicativo centrado
@@ -439,7 +439,7 @@ export function generateAllPurchasesReport(
     doc.text(
       `Fecha: ${format(new Date(), "dd/MM/yyyy", { locale: es })}`,
       150,
-      26
+      26,
     );
 
     let yPosition = 45;
@@ -447,11 +447,11 @@ export function generateAllPurchasesReport(
     // Resumen Ejecutivo (usando los datos filtrados)
     const totalAmount = filteredPurchases.reduce(
       (sum, p) => sum + p.totalAmount,
-      0
+      0,
     );
     const totalQuantity = filteredPurchases.reduce(
       (sum, p) => sum + p.material.quantity,
-      0
+      0,
     );
 
     doc.setFillColor(...lightGray);
@@ -466,7 +466,7 @@ export function generateAllPurchasesReport(
     doc.text(
       `Total Invertido: $${totalAmount.toFixed(2)} MXN`,
       20,
-      yPosition + 8
+      yPosition + 8,
     );
     doc.text(`Total de Material: ${totalQuantity} kg`, 20, yPosition + 13);
 
@@ -527,7 +527,7 @@ export function generateAllPurchasesReport(
         doc.text(
           `Página ${data.pageNumber} de ${doc.getNumberOfPages()}`,
           170,
-          290
+          290,
         );
       },
     });
@@ -552,7 +552,7 @@ export function generateAllSalesReport(purchases: PurchaseReceiptData[]): void {
 
   // 1. Filtrar las compras que cumplen con el estado "COMPLETED" y "PURCHASED"
   const filteredPurchases = purchases.filter(
-    (p) => p.paymentStatus === "COMPLETED" && p.material.status === "PURCHASED"
+    (p) => p.paymentStatus === "COMPLETED" && p.material.status === "PURCHASED",
   );
 
   // Configuración de colores
@@ -580,7 +580,7 @@ export function generateAllSalesReport(purchases: PurchaseReceiptData[]): void {
     doc.text(
       `Fecha: ${format(new Date(), "dd/MM/yyyy", { locale: es })}`,
       150,
-      26
+      26,
     );
 
     // Texto explicativo centrado
@@ -607,7 +607,7 @@ export function generateAllSalesReport(purchases: PurchaseReceiptData[]): void {
     doc.text(
       `Fecha: ${format(new Date(), "dd/MM/yyyy", { locale: es })}`,
       150,
-      26
+      26,
     );
 
     let yPosition = 45;
@@ -615,11 +615,11 @@ export function generateAllSalesReport(purchases: PurchaseReceiptData[]): void {
     // Resumen Ejecutivo (usando los datos filtrados)
     const totalAmount = filteredPurchases.reduce(
       (sum, p) => sum + p.totalAmount,
-      0
+      0,
     );
     const totalQuantity = filteredPurchases.reduce(
       (sum, p) => sum + p.material.quantity,
-      0
+      0,
     );
 
     doc.setFillColor(...lightGray);
@@ -634,7 +634,7 @@ export function generateAllSalesReport(purchases: PurchaseReceiptData[]): void {
     doc.text(
       `Total Generado: $${totalAmount.toFixed(2)} MXN`,
       20,
-      yPosition + 8
+      yPosition + 8,
     );
     doc.text(`Total de Material: ${totalQuantity} kg`, 20, yPosition + 13);
 
@@ -713,7 +713,7 @@ export function generateAllSalesReport(purchases: PurchaseReceiptData[]): void {
         doc.text(
           `Página ${data.pageNumber} de ${doc.getNumberOfPages()}`,
           170,
-          290
+          290,
         );
       },
     });

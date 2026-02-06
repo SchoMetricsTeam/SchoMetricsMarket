@@ -18,9 +18,10 @@ import toast from "react-hot-toast";
 
 type AdminDeleteUserProps = {
     userId: string;
+    onUserDeleted?: () => void; // Add the prop 
 };
 
-const AdminDeleteUser: React.FC<AdminDeleteUserProps> = ({ userId }) => {
+const AdminDeleteUser: React.FC<AdminDeleteUserProps> = ({ userId, onUserDeleted }) => {
     const [user, setUser] = useState<AllDataUser | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -66,8 +67,11 @@ const AdminDeleteUser: React.FC<AdminDeleteUserProps> = ({ userId }) => {
                 throw new Error(errorData.error || "Error al eliminar el usuario.");
             }
             toast.success("Usuario eliminado correctamente.");
+            // Ejecutamos el callback para avisar al padre que refresque la lista
+            if (onUserDeleted) {
+                onUserDeleted();
+            }
             router.refresh();
-            router.push("/admin/lista-de-usuarios/");
         } catch (err) {
             console.error("Error eliminando usuario:", err);
             toast.error(

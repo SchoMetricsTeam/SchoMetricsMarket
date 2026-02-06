@@ -446,7 +446,7 @@ function NewRecyclableMaterialContent() {
     <div className="min-h-screen bg-seller">
       <SellerNavigation />
       <div className="flex flex-col justify-center items-center mt-5 p-4">
-        <div className="mb-10 mt-5 p-3 w-full flex flex-col justify-center items-center text-center">
+        <div className="mb-10 mt-5 p-3 w-full flex flex-col justify-center items-center text-center bg-white/80">
           <div className="p-2 mb-3 bg-sellerBaseColor/5 rounded-lg border border-sellerBaseColor/30">
             <Edit className="h-6 w-6 text-sellerBaseColor" />
           </div>
@@ -455,6 +455,9 @@ function NewRecyclableMaterialContent() {
           </h1>
           <p className="text-zinc-600 text-lg leading-relaxed">
             Crea nuevas publicaciones de venta para materiales reciclables
+          </p>
+          <p className="text-indigo-600 text-xs leading-relaxed animate-pulse">
+            Las validaciones de la cuenta se hacen en tiempo real y pueden tardar algunos minutos.
           </p>
         </div>
 

@@ -418,7 +418,7 @@ export default function ScoresPage() {
                                 Ver Usuario
                               </Button>
                             </Link>
-                            <AdminDeleteUser userId={user?.id} />
+                            <AdminDeleteUser userId={user?.id} onUserDeleted={() => fetchScores(currentPage)} />
                           </TableCell>
                         </TableRow>
                       ))}

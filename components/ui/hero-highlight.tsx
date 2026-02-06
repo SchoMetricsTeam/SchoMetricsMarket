@@ -4,7 +4,6 @@ import { useMotionValue, motion, useMotionTemplate } from "motion/react";
 import React from "react";
 import { Button } from "./button";
 import Link from "next/link";
-import { Building2, School } from "lucide-react";
 import { InfiniteMovingCards } from "./infinite-moving-cards";
 
 export const HeroHighlight = ({

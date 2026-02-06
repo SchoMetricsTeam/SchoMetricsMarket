@@ -134,7 +134,7 @@ export const InfiniteMovingCards = ({
               </div>
               <div className="group/cta flex items-center gap-2 rounded-xl bg-linear-to-r from-emerald-50 to-teal-100 px-5 py-2.5 shadow-lg shadow-emerald-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/40">
                 <Link
-                  href="/iniciar-sesion/empresas"
+                  href="/iniciar-sesion/comprador"
                   className="text-sm font-semibold text-teal-600">
                   Iniciar Sesión
                 </Link>
@@ -196,7 +196,7 @@ export const InfiniteMovingCards = ({
               </div>
               <div className="group/cta flex items-center gap-2 rounded-xl bg-linear-to-r from-indigo-50 to-purple-100 px-5 py-2.5 shadow-lg shadow-indigo-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/40">
                 <Link
-                  href="/iniciar-sesion/escuelas"
+                  href="/iniciar-sesion/vendedor"
                   className="text-sm font-semibold text-indigo-500">
                   Iniciar Sesión
                 </Link>

@@ -139,6 +139,14 @@ export function AdminNavigation() {
                 <DropdownMenuSeparator />
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
+                  <Link href="/admin/materiales-comprados">
+                    <BadgeDollarSign className="mr-2 h-4 w-4 text-green-600" />
+                    <p className="text-green-600 font-semibold">
+                      Compras Recibidas
+                    </p>
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
                   <Link href="/admin/reportes" className="text-orange-600 font-semibold">
                     <MailWarning className="mr-2 h-4 w-4 text-orange-600" />
                     Reportes
@@ -148,14 +156,6 @@ export function AdminNavigation() {
                   <Link href="/admin/materiales-disponibles" className="text-sellerBaseColor font-semibold">
                     <Box className="mr-2 h-4 w-4 text-sellerBaseColor" />
                     Materiales Disponibles
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/admin/materiales-comprados">
-                    <BadgeDollarSign className="mr-2 h-4 w-4 text-green-600" />
-                    <p className="text-green-600 font-semibold">
-                      Compras Totales
-                    </p>
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>

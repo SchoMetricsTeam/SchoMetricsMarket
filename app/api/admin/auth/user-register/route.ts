@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
     ) {
       return NextResponse.json(
         { error: "Faltan campos requeridos" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -52,7 +52,7 @@ export async function POST(request: NextRequest) {
     if (existingUser) {
       return NextResponse.json(
         { error: "El Identificador de Sesión ya está registrado" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -64,7 +64,7 @@ export async function POST(request: NextRequest) {
     if (existingUserWithEmail) {
       return NextResponse.json(
         { error: "El correo electrónico ya está registrado en otro usuario" },
-        { status: 400 }
+        { status: 400 },
       );
     }
     // Verificar si el CCT ya existe en la base de datos
@@ -74,7 +74,7 @@ export async function POST(request: NextRequest) {
     if (existingUserWithCCT) {
       return NextResponse.json(
         { error: "La Clave del Centro de Trabajo ya está registrada" },
-        { status: 400 }
+        { status: 400 },
       );
     }
     // Verificar si el RFC ya existe en la base de datos
@@ -84,7 +84,7 @@ export async function POST(request: NextRequest) {
     if (existingUserWithRFC) {
       return NextResponse.json(
         { error: "El RFC ya está registrado en otro usuario" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -94,7 +94,7 @@ export async function POST(request: NextRequest) {
     // Create user
     const user = await prisma.user.create({
       data: {
-        name,
+        name: name.toUpperCase(),
         identifier,
         password: hashedPassword,
         userType: userType || "SELLER",
@@ -122,13 +122,13 @@ export async function POST(request: NextRequest) {
         message: "Usuario registrado exitosamente",
         userId: user.id,
       },
-      { status: 201 }
+      { status: 201 },
     );
   } catch (error) {
     console.error("Error al registrar usuario:", error);
     return NextResponse.json(
       { error: "Error al registrar usuario" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

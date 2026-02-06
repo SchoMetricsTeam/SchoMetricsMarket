@@ -313,7 +313,7 @@ export default function PublishedMaterialsPage() {
                 <div className="space-y-2 rounded-lg bg-linear-to-br from-slate-50 to-gray-50 p-3 border border-slate-200/50">
                   <div className="flex items-center justify-between text-xs">
                     <span className="font-medium text-slate-600">CCT:</span>
-                    <p className="font-bold text-slate-700">{material.user.profile?.cct}</p>
+                    <p className="font-bold text-slate-700 uppercase">{material.user.profile?.cct?.toUpperCase()}</p>
                   </div>
                   <div className="h-px bg-slate-200" />
                   <div className="flex items-center justify-between text-xs">
@@ -325,7 +325,7 @@ export default function PublishedMaterialsPage() {
                 <div className="rounded-lg bg-linear-to-r from-blue-50 to-cyan-50 border border-blue-200/50 p-3">
                   <div className="flex items-start gap-2">
                     <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-100">
-                      <Clock className="h-4 w-4 text-blue-600 animate-pulse" />
+                      <Clock className="h-4 w-4 text-blue-600 animate-spin" />
                     </div>
                     <div className="flex-1">
                       <p className="text-xs font-medium text-blue-700 mb-1">Horario de Recolección</p>
@@ -432,14 +432,14 @@ export default function PublishedMaterialsPage() {
           recyclableMaterials?.recyclableMaterials &&
           recyclableMaterials.recyclableMaterials.length > 0 && (
             <div className="text-center py-12">
-              <p className="text-zinc-300 mb-4">
+              <p className="text-zinc-600 mb-4">
                 No se encontraron materiales que coincidan con los filtros seleccionados
               </p>
               <Button
                 variant="outline"
                 size="sm"
                 onClick={clearFilters}
-                className="group border-emerald-200 text-emerald-700 transition-all duration-300 hover:border-emerald-500 hover:bg-emerald-50 cursor-pointer hover:text-emerald-500"
+                className="group border-emerald-200 text-emerald-700 transition-all duration-300 hover:border-emerald-500 hover:bg-white cursor-pointer hover:text-emerald-600"
               >
                 <X className="mr-2 h-4 w-4 transition-transform duration-300 group-hover:rotate-90" />
                 Limpiar filtros
